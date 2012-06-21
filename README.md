@@ -23,8 +23,8 @@ Our aim is to reasonably support as many devices and browsers. At the moment we'
 * Safari 5+
 
 In future we'll look at supporting
-Android 2.2.1 (based on http://developer.android.com/resources/dashboard/platform-versions.html)
-IE
+* Android 2.2.1 (based on http://developer.android.com/resources/dashboard/platform-versions.html)
+* IE
 
 Dependencies 
 ============
