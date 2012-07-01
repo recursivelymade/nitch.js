@@ -22,6 +22,8 @@ nitch.modal = function(elem, opts) {
 	this.opts = nitch.util.apply(defaults, opts);
 	this.mask = nitch.dom("#modal-backdrop");
 	this.elem =  nitch.dom(elem);
+	
+	if(this.elem.nodeList.length === 0) { return; }
 
 // Check if we already have a mask set up
 	if (!this.mask.nodeList[0]) { 
