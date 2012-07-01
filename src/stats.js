@@ -10,6 +10,8 @@ nitch.stats = function() {
 		engine: "google"
 	}
 	
+	if(!_gaq) { return; }
+	
 	if(!localStorage.getItem("nitch.stats")){
 		localStorage.setItem("nitch.stats","[]");
 	}
