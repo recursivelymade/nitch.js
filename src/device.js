@@ -16,7 +16,7 @@ nitch.device = {
 	 * @namespace nitch.device.type
 	 * @method
 	 * @description Tries it's best to guess the device type based on the user-agent string sent. All based off <a href="https://github.com/Skookum/categorizr.js">Categorizr.js: Device Detection Scripts</a>
-	 * @returns {string} tv|tablet|mobile|desktop
+	 * @returns {string} tv | tablet | mobile | desktop
 	 * @example nitch.device.type()
 	**/
 	
