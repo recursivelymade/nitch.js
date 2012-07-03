@@ -15,7 +15,7 @@ nitch.math = {
 	 * @name nitch.math.Alea
 	 * @method
 	 * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
-	 * @see http://baagoe.org/en/wiki/Better_random_numbers_for_javascript
+	 * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
 	**/
 	Alea: function() {
 		return (function(args) {
@@ -71,7 +71,7 @@ nitch.math = {
 	 * @name nitch.math.Mash
 	 * @method
 	 * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
-	 * @see http://baagoe.org/en/wiki/Better_random_numbers_for_javascript
+	 * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
 	**/
 	Mash: function() {
 		var n = 0xefc8249d;
@@ -93,6 +93,32 @@ nitch.math = {
 
 		mash.version = 'Mash 0.9';
 		return mash;
+	},
+
+	/**
+	 * @name nitch.math.deg2rad
+	 * @method
+	 * @description Converts degrees to the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number. 
+	 * @param {Numeric} degrees The degrees you want to convert
+	 * @example nitch.math.deg2rad(45); // returns 0.7853981633974483
+	 *  nitch.math.deg2rad(90); // returns 1.5707963267948966
+	 * @returns {Numeric}
+	**/
+	deg2rad: function(degrees) {
+		return degrees * (Math.PI/180);
+	},
+
+	/**
+	 * @name nitch.math.rad2deg
+	 * @method
+	 * @description Converts the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number to the equivalent number in degrees. 
+	 * @param {Numeric} radian The radian you want to convert
+	 * @example nitch.math.rad2deg(0.785398163397448309615660845819875721); // returns 45
+	 *  nitch.math.rad2deg(1.57079632679489661923132169163975144); // returns 90
+	 * @returns {Numeric}
+	**/
+	rad2deg: function(radian) {
+		return radian * (180/Math.PI);
 	}
 },
 	/** 
