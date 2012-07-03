@@ -22,30 +22,30 @@ nitch.xhr = function(url, opts) {
 		params: null
 	}
 	
-	this.opts = _.defaults(opts, defaults);
-	
+	this.opts = nitch.util.apply(defaults, this.opts);
+
 	var that = this;
 	var req = new XMLHttpRequest();
 	var header;
 
-	req.queryString = opts.params;
-	req.open(opts.method, url, opts.async);
+	req.queryString = this.opts.params;
+	req.open(this.opts.method, url, this.opts.async);
 
 	// Set "X-Requested-With" header
 	req.setRequestHeader('X-Requested-With','XMLHttpRequest');
 
-	if (opts.method.toLowerCase() == 'post') {
+	if (this.opts.method.toLowerCase() == 'post') {
 		req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 	}
 
-	for (header in opts.headers) {
-		if (opts.headers.hasOwnProperty(header)) {
-		  req.setRequestHeader(header, opts.headers[header]);
+	for (header in this.opts.headers) {
+		if (this.opts.headers.hasOwnProperty(header)) {
+		  req.setRequestHeader(header, this.opts.headers[header]);
 		}
 	}
 
-	req.handleResp = opts.callback;
-	req.handleError = opts.error;
+	req.handleResp = this.opts.callback;
+	req.handleError = this.opts.error;
 	
 	hdl = function (){
 		if(req.readyState == 4) {
@@ -59,15 +59,15 @@ nitch.xhr = function(url, opts) {
 		}
 	}
 	
-	if(opts.async) {
-		req.onreadystatechange = this.hdl;
+	if(this.opts.async) {
+		req.onreadystatechange = hdl;
 		this.xmlHttpRequest = req;
 	}
 	
-	req.send(opts.params);
+	req.send(this.opts.params);
 	
-	if(!opts.async) { 
-		this.hdl();
+	if(!this.opts.async) {
+		hdl();
 	}
 
 	return this;
