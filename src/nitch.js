@@ -345,6 +345,74 @@ nitch.nodeList = function(selector) {
 		
 		return this;
 	}
+	
+	
+	/**
+	 * @name nitch.events.touchandhold
+	 * @description Creates a touch and hold event. The native events come through as eventStart, eventMove, eventRelease. <div class="label label-error">On touchscreens we prevent ghost clicks, which occur after touchend by attaching an empty click eventListner</div>
+	 * @param {Object} opts
+	 * @param {Function} [opts.start=function(eventStart){}] Fires function at the start of a mousedown / touchstart event
+	 * @param {Function} [opts.move=function(eventMove){}] Fires function during the mousemove / touchmove event
+	 * @param {Function} [opts.release=function(eventRelease){}] Fires function during the mouseup / touchend event
+	 * @example nitch.dom(".rotatable").touchandhold({
+	 * 		start: function() { console.info("Started holding"); },
+	 * 		move: function() { console.info("Started moving"); },
+	 * 		release: function() { console.info("Released"); }
+	 * });
+	**/	
+	nitch.nodeList.prototype.touchandhold = function(opts) {
+		var hasTouch = (typeof window.ontouchstart === "undefined" ? false : true);
+		var that = this;
+	
+		if(!hasTouch) {
+			// Must be a desktop browser, please say doesn't have a touch screen....
+			this.on('mousedown', function(eventStart) { 
+				if(opts && opts.start) {
+					opts.start(eventStart); 
+				}
+				
+				that.on('mousemove', function(eventMove) {
+					if(opts && opts.move) {
+						opts.move(eventMove); // function(eventMove){ fling.rotateElement(eventMove, eventMove.Target); }
+					}
+				}
+				
+			});
+			
+			this.on('mouseup', function(eventRelease) { 
+				if(opts && opts.release) {
+					opts.start(eventRelease); 
+				}
+				that.unbind('mousemove');
+			});
+	
+		} else {
+			this.on('touchstart', function(eventStart) {  
+				if(opts && opts.start) {
+					opts.start(eventStart); 
+				}
+				
+				that.on('touchmove', function(eventMove) {  
+					if(opts && opts.move) {
+						opts.move(eventMove); 
+					}
+				}
+				
+			});
+			
+			this.on('touchend', function(eventRelease) {
+				if(opts && opts.release) {
+					opts.start(eventRelease); 
+				}
+				that.unbind('touchmove');
+			});
+			
+			// We may need to capture clicks in the future as VoiceOver on iOS sends them instead of touchevents
+			this.on('click', function(){});
+		}
+	
+		return this;
+	}
 	  
 	return this;
 }
