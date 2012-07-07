@@ -70,5 +70,12 @@ nitch.xhr = function(url, opts) {
 		hdl();
 	}
 
-	return this;
+	nitch.xhr.prototype.json = function() {
+		return JSON.parse(req.responseText);
+	}
+
+	nitch.xhr.prototype.xml = function() {
+		var parser = new DOMParser();  
+		return parser.parseFromString(req.responseXml, "text/xml");
+	}	
 }
