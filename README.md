@@ -1,10 +1,11 @@
 nitch.js
 ========
 
-Nitch is designed as a multi-device HTML5 games framework. It offers
+You've heard of [Responsive Web Design](http://en.wikipedia.org/wiki/Responsive_Web_Design) right? Well Nitch is designed as a responsive web game framework. It offers
 * Simple DOM manipulation
 * Simple events, such as on, off, fire and a custom cross-device "tap" event
-* A state machine to track events through your app
+* A state machine to track events through your game
+* A [Quad tree](http://en.wikipedia.org/wiki/Quadtree) to support collision detection
 * A progress loader system
 * XHR requests
 * Device and media query detection to deliver the right css and app cache manifest for your device
