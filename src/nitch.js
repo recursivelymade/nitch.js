@@ -65,11 +65,28 @@ nitch.nodeList = function(selector) {
 	 * @method
 	 * @description Gets the style property on the first element in the node list 
 	
-     * @example nitch.dom("#main").css("background-color");
+     * @example nitch.dom("#main").getStyle("background-color");
     **/
     nitch.nodeList.prototype.getStyle = function(style) {
 		return document.defaultView.getComputedStyle(this.nodeList[0],null).getPropertyValue(style);
-    }
+    },
+
+    /**
+	 * @namespace nitch.offset
+	 * @method
+	 * @description Returns the offset properties of 
+	 * @returns {Object} 
+     * @example nitch.dom("#main").offset(); // returns { left:10px; top: 10px, width: 200px, height: 200px }
+    **/    
+	nitch.nodeList.prototype.offset = function(){
+		var node = this.nodeList[0].getBoundingClientRect();
+		return {
+			left: node.left + window.pageXOffset,
+			top: node.top + window.pageYOffset,
+			width: node.width,
+			height: node.height
+		}
+	},
     
     /**
 	 * @namespace nitch.text
@@ -167,7 +184,7 @@ nitch.nodeList = function(selector) {
 	 * @function
 	 * @description Inserts a new element before each element in the nodelist
 	
-     * @example nitch.dom("#main").before("<p>Hello</p>");
+     * @example nitch.dom("#main").before("&lt;p&gt;Hello&lt;/p&gt;");
     **/
 	nitch.nodeList.prototype.before = function(elem) {
 		this.each.call(this.nodeList, function (i) {
@@ -182,7 +199,7 @@ nitch.nodeList = function(selector) {
 	 * @function
 	 * @description Inserts a new element just inside each element in the nodelist
 	
-     * @example nitch.dom("#main").prepend("<p>Hello</p>");
+     * @example nitch.dom("#main").prepend("&lt;p&gt;Hello&lt;/p&gt;");
     **/
 	nitch.nodeList.prototype.prepend = function(elem) {
 		this.each.call(this.nodeList, function (i) {
@@ -196,7 +213,7 @@ nitch.nodeList = function(selector) {
 	 * @function
 	 * @description Inserts a new element after each element in the nodelist
 	
-     * @example nitch.dom("#main").after("<p>Hello</p>");
+     * @example nitch.dom("#main").after("&lt;p&gt;Hello&lt;/p&gt;");
     **/
 	nitch.nodeList.prototype.after = function(elem) {
 		this.each.call(this.nodeList, function (i) {
@@ -211,7 +228,7 @@ nitch.nodeList = function(selector) {
 	 * @function
 	 * @description Inserts a new element after the last child of each element in the nodelist
 	
-     * @example nitch.dom("#main").append("<p>Hello</p>");
+     * @example nitch.dom("#main").append("&lt;p&gt;Hello&lt;/p&gt;");
     **/
 	nitch.nodeList.prototype.append = function(elem) {
 		this.each.call(this.nodeList, function (i) {
@@ -234,6 +251,8 @@ nitch.nodeList = function(selector) {
         });
         return this;
     },
+    
+    
 
 	/**
 	 * @namespace nitch.events
@@ -271,7 +290,9 @@ nitch.nodeList = function(selector) {
 	 * @description Detaches an event handler
 	**/
 	nitch.nodeList.prototype.detach = function(event, callback) {
+		console.info("calling detach");
         this.nodeList.forEach.call(this.nodeList, function (i) {
+        	console.info(callback);
             i.removeEventListener(event, callback, false);
         });
         return this;
@@ -344,15 +365,17 @@ nitch.nodeList = function(selector) {
 		}
 		
 		return this;
-	}
+	},
 	
+
 	
 	/**
 	 * @name nitch.events.touchandhold
-	 * @description Creates a touch and hold event. The native events come through as eventStart, eventMove, eventRelease. <div class="label label-error">On touchscreens we prevent ghost clicks, which occur after touchend by attaching an empty click eventListner</div>
+	 * @description Creates a touch and hold event. The start and release native events come through as eventStart, and eventRelease. <div class="label label-error">On touchscreens we prevent ghost clicks, which occur after touchend by attaching an empty click eventListner</div>
+	 * @param {String} elem The element you want the touch and hold event to be associated with
 	 * @param {Object} opts
 	 * @param {Function} [opts.start=function(eventStart){}] Fires function at the start of a mousedown / touchstart event
-	 * @param {Function} [opts.move=function(eventMove){}] Fires function during the mousemove / touchmove event
+	 * @param {Function} [opts.move=function(){}] Fires function during the mousemove / touchmove event
 	 * @param {Function} [opts.release=function(eventRelease){}] Fires function during the mouseup / touchend event
 	 * @example nitch.dom(".rotatable").touchandhold({
 	 * 		start: function() { console.info("Started holding"); },
@@ -360,51 +383,41 @@ nitch.nodeList = function(selector) {
 	 * 		release: function() { console.info("Released"); }
 	 * });
 	**/	
-	nitch.nodeList.prototype.touchandhold = function(opts) {
+	nitch.nodeList.prototype.touchandhold = function(elem, opts) {
+		if(!elem) { return; }
 		var hasTouch = (typeof window.ontouchstart === "undefined" ? false : true);
-		var that = this;
+		opts = opts ? opts : {};
+		var defaults = {
+			start: function() { },
+			move: function() { },
+			release: function() { }
+		}
+		
+		opts = nitch.util.apply(defaults, opts);
+		var view = nitch.dom(elem);
 	
 		if(!hasTouch) {
 			// Must be a desktop browser, please say doesn't have a touch screen....
-			this.on('mousedown', function(eventStart) { 
-				if(opts && opts.start) {
-					opts.start(eventStart); 
-				}
-				
-				that.on('mousemove', function(eventMove) {
-					if(opts && opts.move) {
-						opts.move(eventMove); // function(eventMove){ fling.rotateElement(eventMove, eventMove.Target); }
-					}
-				}
+			view.on('mousedown', function(eventStart) { 
+				opts.start(eventStart); 
+				window.addEventListener("mousemove", opts.move, false); 
 				
 			});
-			
-			this.on('mouseup', function(eventRelease) { 
-				if(opts && opts.release) {
-					opts.start(eventRelease); 
-				}
-				that.unbind('mousemove');
+			var that = this;
+			view.on('mouseup', function(eventRelease) { 
+				opts.release(eventRelease); 
+				window.removeEventListener("mousemove", opts.move, false); 
 			});
 	
 		} else {
-			this.on('touchstart', function(eventStart) {  
-				if(opts && opts.start) {
-					opts.start(eventStart); 
-				}
-				
-				that.on('touchmove', function(eventMove) {  
-					if(opts && opts.move) {
-						opts.move(eventMove); 
-					}
-				}
-				
+			view.on('touchstart', function(eventStart) {  
+				opts.start(eventStart); 
+				that.on('touchmove', opts.move);
 			});
 			
-			this.on('touchend', function(eventRelease) {
-				if(opts && opts.release) {
-					opts.start(eventRelease); 
-				}
-				that.unbind('touchmove');
+			view.on('touchend', function(eventRelease) {
+				opts.release(eventRelease); 
+				that.detach('touchmove', opts.move);
 			});
 			
 			// We may need to capture clicks in the future as VoiceOver on iOS sends them instead of touchevents
@@ -413,7 +426,7 @@ nitch.nodeList = function(selector) {
 	
 		return this;
 	}
-	  
+	
 	return this;
 }
 /**
