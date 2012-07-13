@@ -119,6 +119,52 @@ nitch.math = {
 	**/
 	rad2deg: function(radian) {
 		return radian * (180/Math.PI);
+	},
+	
+	/**
+	 * @name nitch.math.distance
+	 * @method
+	 * @description Works out the distance between two elements based on their coordinates
+	 * @param {Object} obj1 The first element
+	 * @param {Numeric} obj1.x The object's x
+	 * @param {Numeric} obj1.y The object's y
+	 * @param {Object} obj2 The second element
+	 * @param {Numeric} obj2.x The object's x
+	 * @param {Numeric} obj2.y The object's y
+	 * @returns {Numeric}
+	**/
+	distance: function(obj1, obj2) {
+		var squared = nitch.math.distanceSquared(obj1,obj2);
+		return Math.sqrt(parseFloat(squared));
+	},
+	
+	/**
+	 * @name nitch.math.distanceSquared
+	 * @method
+	 * @description Works out the distance between two elements based on their coordinates
+	 * @param {Object} obj1 The first element
+	 * @param {Numeric} obj1.x The object's x
+	 * @param {Numeric} obj1.y The object's y
+	 * @param {Object} obj2 The second element
+	 * @param {Numeric} obj2.x The object's x
+	 * @param {Numeric} obj2.y The object's y
+	 * @returns {Numeric}
+	**/
+	distanceSquared: function(obj1, obj2) {
+		return (obj1.x - obj2.x) * (obj1.x - obj2.x) + (obj1.y - obj2.y) * (obj1.y - obj2.y);
+	},
+	
+	/**
+	 * @name nitch.math.within
+	 * @method
+	 * @description Because <a href="http://www.twitter.com/mcvicar">@mcvicar</a> is lazy. This checks that the value is within a max and min value. 
+	 * @param {Numeric} radian The radian you want to convert
+	 * @example nitch.math.within(10, 5, 30); // returns true
+	 *  nitch.math.within(1, 5, 30); // returns false
+	 * @returns {Boolean}
+	**/
+	within: function (value, min, max) {
+		return (value >= min && value <= max);
 	}
 },
 	/** 
