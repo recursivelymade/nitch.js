@@ -23,7 +23,7 @@ nitch.statemachine = function(opts) {
 		ASYNC: 'async'
 	}
 
-	var initialState   = (typeof opts.initialState == 'string') ? { state: opts.initialState } : opts.initialState; // allow for a simple string, or an object with { state: 'foo', event: 'setup', defer: true|false }
+	var initial   = (typeof opts.initial == 'string') ? { state: opts.initial } : opts.initial; // allow for a simple string, or an object with { state: 'foo', event: 'setup', defer: true|false }
 	var fsm       = {};
 	var events    = opts.events || [];
 	var callbacks = opts.callbacks || {};
@@ -103,7 +103,7 @@ nitch.statemachine = function(opts) {
     }
 	
 	var add = function(e) {
-		var from = (e.from instanceof Array) ? e.from : (e.from ? [e.from] : [that.defaults.WILDCARD]); // allow 'wildcard' transition if 'from' is not specified
+		var from = (e.from instanceof Array) ? e.from : (e.from ? [e.from] : [this.defaults.WILDCARD]); // allow 'wildcard' transition if 'from' is not specified
 		map[e.name] = map[e.name] || {};
 	
 		for (var n = 0 ; n < from.length ; n++) {
@@ -111,9 +111,9 @@ nitch.statemachine = function(opts) {
 		}
 	};
 
-	if (opts.initialState) {
-		opts.initialState.event = opts.initialState.event || 'startup';
-		add({ name: opts.initialState.event, from: 'none', to: opts.initialState.state });
+	if (initial) {
+		initial.event = initial.event || 'startup';
+		add({ name: initial.event, from: 'none', to: initial.state });
 	}
 
 	for(var n = 0 ; n < events.length ; n++) {
@@ -146,8 +146,8 @@ nitch.statemachine = function(opts) {
 	};
 	fsm.error = opts.error || function(name, from, to, args, error, msg, e) { throw e || msg; };
 
-    if (opts.initialState && !opts.initialState.defer) {
-		fsm[opts.initialState.event]();
+    if (initial && !initial.defer) {
+		fsm[initial.event]();
 		return fsm;
 	}
 };
