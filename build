@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Stupidly basic build script. Requires build-tools. 
+
+# combines all the js files using Google closure
+echo "Building the JS"
+java -jar ../../build-tools/google-closure/compiler.jar --js src/nitch.js src/device.js src/math.js src/modal.js src/stats.js src/xhr.js src/progress.js src/statemachine.js src/externals/classList.js/classList.js src/externals/matchMedia.js/matchMedia.js --js_output_file min/nitch.js
+
+#TODO 
+# uglifyjs --unsafe nitch.closure.min.js >> nitch.uglify.min.js
+# m=$(ls -la nitch.uglify.min.js | awk '{ print $5}')
+# gzip -nfc --best nitch.uglify.min.js > nitch.min.js.gz
+# g=$(ls -la nitch.min.js.gz | awk '{ print $5}')
+# echo "$m bytes minified, $g bytes gzipped"
+# rm nicth.min.js.gz
+# mv nitch.uglify.min.js min/nitch.js
+# rm nitch.closure.min.js
+#if [ "--test" == "$1" ]; then
+#  rm nitch.min.js
+#fi

@@ -1,0 +1,12 @@
+server: http://localhost:4224
+
+load:
+  - min/*.js
+
+test:
+  - src-test/*.js
+
+plugin:
+ - name: "coverage"
+   jar: "../../build-tools/JsTestDriver/plugins/coverage.jar"
+   module: "com.google.jstestdriver.coverage.CoverageModule"
