@@ -431,8 +431,7 @@ nitch.nodeList = function(selector) {
 }
 /**
  * @namespace nith.util
- * @method
- * @description Language utilies
+ * @description Language utilities
 **/
 nitch.util = {
 	/**
