@@ -1,11 +1,11 @@
 nitch.progress = function(elem, opts) {
 
 	this.opts = opts;
-	this.totalLoaded = opts.defaultLoaded;
-	var totalAmount = opts.defaultLoaded
+	this.totalLoaded = (typeof opts.defaultLoaded === "number" ? 0 : opts.defaultLoaded);
+	var totalAmount = this.totalLoaded;
 	
 	for (var amount in this.opts.assets){
-		totalAmount = totalAmount + this.opts.assets[amount];
+		totalAmount = totalAmount + (typeof this.opts.assets[amount] === "number" ? 0 : this.opts.assets[amount]) ;
 	}
 	this.total = totalAmount;
 	
@@ -33,7 +33,7 @@ nitch.progress = function(elem, opts) {
 /**
 @namespace nitch.progress
 @class
-@description Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default.
+@description Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default and updates <a href="http://www.w3.org/TR/wai-aria/states_and_properties#aria-valuenow">aria-valuenow</a> as you send loaded assets.
 @example var loader = new nitch.progress("#loading", {
 	defaultLoaded: 40,
 	assets: {
