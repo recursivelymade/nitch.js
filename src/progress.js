@@ -13,17 +13,19 @@ nitch.progress = function(elem, opts) {
 	var totalAmount = this.totalLoaded;
 	
 	for (var amount in this.opts.assets){
-		totalAmount = totalAmount + (typeof this.opts.assets[amount] === "number" ? 0 : this.opts.assets[amount]) ;
+		totalAmount = totalAmount + (typeof this.opts.assets[amount] === "number" ? this.opts.assets[amount] : 0) ;
 	}
 	this.total = totalAmount;
 	
 	nitch.dom(elem).after('<div class="progress" role="progressbar" aria-valuenow="'+opts.defaultLoaded+'" aria-valuemin="'+opts.defaultLoaded+'" aria-valuemax="'+this.total+'"><div style="width: '+opts.defaultLoaded+'%;" class="bar"></div></div>');
 	
 	nitch.progress.prototype.loaded = function(asset) {
-		this.totalLoaded = this.totalLoaded + this.opts.assets[asset];
-		// Set asset to 0 so if called again it has no affect on the total loaded
-		this.opts.assets[asset] = 0;
-		this.complete();
+		if(this.opts.assets[asset]) {
+			this.totalLoaded = this.totalLoaded + this.opts.assets[asset];
+			// Set asset to 0 so if called again it has no affect on the total loaded
+			this.opts.assets[asset] = 0;
+			this.complete();
+		}
 	},
 	
 	nitch.progress.prototype.complete = function() {

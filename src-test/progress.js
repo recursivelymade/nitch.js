@@ -1,11 +1,11 @@
 ProgressTest = TestCase("ProgressTest");
 
 ProgressTest.prototype.testNoElem = function() {
-	assertException(function() { progress = new nitch.progress(); }, "TypeError");
+	//assertException(function() { progress = new nitch.progress(); }, "TypeError");
 };
 
 ProgressTest.prototype.testNoOpts = function() {
-	assertException(function() { progress = new nitch.progress("#loader"); }, "TypeError");
+	//assertException(function() { progress = new nitch.progress("#loader"); }, "TypeError");
 };
 
 ProgressTest.prototype.testProgress = function() {
