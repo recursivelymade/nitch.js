@@ -42,7 +42,8 @@ stateMachine.prototype.testCanFunctions = function() {
 	]});
 	
 	assertTrue(sm.can('warn'));
-	assertEquals("should NOT be able to panic from green state", sm.cannot('panic'));
+	assertEquals('green', sm.current);
+	assertEquals("should NOT be able to panic from green state", sm.can('panic'));
 	assertEquals("should NOT be able to clam from green state", sm.cannot('calm'));
 	assertEquals("should NOT be able to clear from green state", sm.can('clear'));
 }
@@ -59,6 +60,7 @@ stateMachine.prototype.testMoveStates = function() {
 	
 	sm.warn();
 	assertEquals('yellow', sm.current);
+	assertTrue(sm.is('yellow'));
 	
 	sm.panic();
 	assertEquals('red', sm.current);
@@ -89,25 +91,26 @@ stateMachine.prototype.testOnStates = function() {
 	  ],
 	  callbacks: {
 	  	onchangestate: function(event,from,to) { changestate = event + ' from ' + from + ' to ' + to; },
-		onbeforeyellow: function() { onbefore = true; },
+		onbeforewarn: function() { onbefore = true; },
 		onleaveyellow: function() { onleave = true; },
 		onenteryellow: function() { onenter = true; },
-		onafteryellow: function() { onafter = true; }
+		onafterwarn: function() { onafter = true; }
 	  }
 	});
 
 	assertEquals('startup from none to green', changestate);	
 	assertEquals('green', sm.current);
 	assertFalse(onbefore);
-	assertFalse(onleave);
 	assertFalse(onenter);
+	assertFalse(onleave);
 	assertFalse(onafter);
 	
 	sm.warn();
 	assertEquals('warn from green to yellow', changestate);
 	assertTrue(onbefore);
-	assertTrue(onleave);
 	assertTrue(onenter);
+	sm.panic();
+	assertTrue(onleave);
 	assertTrue(onafter);
 	
 }
