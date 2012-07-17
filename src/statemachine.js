@@ -21,7 +21,7 @@ nitch.statemachine = function(opts) {
 
 		WILDCARD: '*',
 		ASYNC: 'async'
-	},
+	}
 
 	var initial   = (typeof opts.initial == 'string') ? { state: opts.initial } : opts.initial; // allow for a simple string, or an object with { state: 'foo', event: 'setup', defer: true|false }
 	var fsm       = {};

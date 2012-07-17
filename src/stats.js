@@ -8,7 +8,7 @@ nitch.stats = function() {
 	
 	this.defaults = {
 		engine: "google"
-	},
+	}
 	
 	if(!_gaq) { return; }
 	

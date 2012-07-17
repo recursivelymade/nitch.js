@@ -114,7 +114,7 @@ nitch.device.features = {
 			audioElement: (typeof window.Audio === "undefined" ? false : true),
 			videoElement: (typeof window.Video === "undefined" ? false : true),
 			webGL: (typeof window.WebGLRenderingContext === "undefined" ? false : true)
-		},
+		}
 	
 		if(debug === true) {
 			var html = '<ul class="debug-info">';
@@ -169,7 +169,7 @@ nitch.device.features = {
 		
 		nitch.device.stylesheet.prototype.add = function(uri, mediaQuery) {
 			nitch.dom("head").append('<link type="text/css" rel="stylesheet" media="'+mediaQuery+'" href="'+uri+'" />');
-		},
+		}
 
 		var device = nitch.device.type();
 	
