@@ -20,7 +20,7 @@ nitch.xhr = function(url, opts) {
 		callback: function() {},
 		error: function() {},
 		params: null
-	}
+	};
 	
 	this.opts = nitch.util.apply(defaults, this.opts);
 
@@ -40,7 +40,7 @@ nitch.xhr = function(url, opts) {
 
 	for (header in this.opts.headers) {
 		if (this.opts.headers.hasOwnProperty(header)) {
-		  req.setRequestHeader(header, this.opts.headers[header]);
+			req.setRequestHeader(header, this.opts.headers[header]);
 		}
 	}
 
@@ -57,7 +57,7 @@ nitch.xhr = function(url, opts) {
 				req.handleError();
 			}
 		}
-	}
+	};
 	
 	if(this.opts.async) {
 		req.onreadystatechange = hdl;
@@ -72,10 +72,10 @@ nitch.xhr = function(url, opts) {
 
 	nitch.xhr.prototype.json = function() {
 		return JSON.parse(req.responseText);
-	}
+	};
 
 	nitch.xhr.prototype.xml = function() {
 		var parser = new DOMParser();  
 		return parser.parseFromString(req.responseXml, "text/xml");
-	}	
-}
+	};
+};

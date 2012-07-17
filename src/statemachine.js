@@ -21,7 +21,7 @@ nitch.statemachine = function(opts) {
 
 		WILDCARD: '*',
 		ASYNC: 'async'
-	}
+	},
 
 	var initial   = (typeof opts.initial == 'string') ? { state: opts.initial } : opts.initial; // allow for a simple string, or an object with { state: 'foo', event: 'setup', defer: true|false }
 	var fsm       = {};
@@ -66,8 +66,8 @@ nitch.statemachine = function(opts) {
 			}
 
 			if (from === to) {
-			  that.afterEvent(this, name, from, to, args);
-			  return that.defaults.results.NOTRANSITION;
+				that.afterEvent(this, name, from, to, args);
+				return that.defaults.results.NOTRANSITION;
 			}
 
 			// prepare a transition method for use EITHER lower down, or by caller if they want an async transition (indicated by an ASYNC return value from leaveState)
@@ -84,7 +84,7 @@ nitch.statemachine = function(opts) {
 			this.transition.cancel = function() { // provide a way for caller to cancel async transition if desired (issue #22)
 				fsm.transition = null;
 				that.afterEvent(fsm, name, from, to, args);
-			}
+			};
 
 			var leave = that.leaveState(this, name, from, to, args);
 		
@@ -100,7 +100,7 @@ nitch.statemachine = function(opts) {
 				}
 			}
 		};
-    }
+    };
 	
 	var add = function(e) {
 		var from = (e.from instanceof Array) ? e.from : (e.from ? [e.from] : [this.defaults.WILDCARD]); // allow 'wildcard' transition if 'from' is not specified
@@ -122,15 +122,15 @@ nitch.statemachine = function(opts) {
 	
 	var that = this;
 	
-	for(var name in map) {
-		if (map.hasOwnProperty(name)) {
-			fsm[name] = this.buildEvent(name, map[name], that);
+	for(var mapName in map) {
+		if (map.hasOwnProperty(mapName)) {
+			fsm[mapName] = this.buildEvent(mapName, map[mapName], that);
 		}
 	}
 
-	for(var name in callbacks) {
-		if (callbacks.hasOwnProperty(name)) {
-			fsm[name] = callbacks[name]
+	for(var callbackName in callbacks) {
+		if (callbacks.hasOwnProperty(callbackName)) {
+			fsm[callbackName] = callbacks[callbackName];
 		}
 	}
 
@@ -140,7 +140,7 @@ nitch.statemachine = function(opts) {
 	};
 	fsm.can = function(event) { 
 		return !this.transition && (map[event].hasOwnProperty(this.current) || map[event].hasOwnProperty(that.defaults.WILDCARD)); 
-	}
+	};
 	fsm.cannot = function(event) { 
 		return !this.can(event); 
 	};

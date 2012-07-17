@@ -8,7 +8,7 @@ nitch.stats = function() {
 	
 	this.defaults = {
 		engine: "google"
-	}
+	},
 	
 	if(!_gaq) { return; }
 	
@@ -75,4 +75,4 @@ nitch.stats = function() {
          that.sendLocalEvents();
 	}, false);  
 	
-}
+};

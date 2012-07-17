@@ -11,12 +11,12 @@ nitch.math = {
 	rng: function() {
 	},
 	
-	/**
-	 * @name nitch.math.Alea
-	 * @method
-	 * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
-	 * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
-	**/
+/**
+ * @name nitch.math.Alea
+ * @method
+ * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
+ * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
+**/
 	Alea: function() {
 		return (function(args) {
 		var s0 = 0;
@@ -24,8 +24,8 @@ nitch.math = {
 		var s2 = 0;
 		var c = 1;
 
-		if (args.length == 0) {
-			args = [+new Date];
+		if (args.length === 0) {
+			args = [+new Date()];
 		}
 		var mash = nitch.math.Mash();
 		s0 = mash(' ');
@@ -67,12 +67,12 @@ nitch.math = {
 		} (Array.prototype.slice.call(arguments)));
 	},
 	
-	/**
-	 * @name nitch.math.Mash
-	 * @method
-	 * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
-	 * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
-	**/
+/**
+ * @name nitch.math.Mash
+ * @method
+ * @author Johannes Baagøe <baagoe@baagoe.com>, 2010
+ * @see <a href="http://baagoe.org/en/wiki/Better_random_numbers_for_javascript">Better random numbers for javascript</a>
+**/
 	Mash: function() {
 		var n = 0xefc8249d;
 
@@ -95,92 +95,92 @@ nitch.math = {
 		return mash;
 	},
 
-	/**
-	 * @name nitch.math.deg2rad
-	 * @method
-	 * @description Converts degrees to the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number. 
-	 * @param {Numeric} degrees The degrees you want to convert
-	 * @example nitch.math.deg2rad(45); // returns 0.7853981633974483
-	 *  nitch.math.deg2rad(90); // returns 1.5707963267948966
-	 * @returns {Numeric}
-	**/
+/**
+ * @name nitch.math.deg2rad
+ * @method
+ * @description Converts degrees to the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number. 
+ * @param {Numeric} degrees The degrees you want to convert
+ * @example nitch.math.deg2rad(45); // returns 0.7853981633974483
+ *  nitch.math.deg2rad(90); // returns 1.5707963267948966
+ * @returns {Numeric}
+**/
 	deg2rad: function(degrees) {
 		return degrees * (Math.PI/180);
 	},
 
-	/**
-	 * @name nitch.math.rad2deg
-	 * @method
-	 * @description Converts the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number to the equivalent number in degrees. 
-	 * @param {Numeric} radian The radian you want to convert
-	 * @example nitch.math.rad2deg(0.785398163397448309615660845819875721); // returns 45
-	 *  nitch.math.rad2deg(1.57079632679489661923132169163975144); // returns 90
-	 * @returns {Numeric}
-	**/
+/**
+ * @name nitch.math.rad2deg
+ * @method
+ * @description Converts the <a href="http://en.wikipedia.org/wiki/Radian">radian</a> number to the equivalent number in degrees. 
+ * @param {Numeric} radian The radian you want to convert
+ * @example nitch.math.rad2deg(0.785398163397448309615660845819875721); // returns 45
+ *  nitch.math.rad2deg(1.57079632679489661923132169163975144); // returns 90
+ * @returns {Numeric}
+**/
 	rad2deg: function(radian) {
 		return radian * (180/Math.PI);
 	},
 	
-	/**
-	 * @name nitch.math.distance
-	 * @method
-	 * @description Works out the distance between two elements based on their coordinates
-	 * @param {Object} obj1 The first element
-	 * @param {Numeric} obj1.x The object's x
-	 * @param {Numeric} obj1.y The object's y
-	 * @param {Object} obj2 The second element
-	 * @param {Numeric} obj2.x The object's x
-	 * @param {Numeric} obj2.y The object's y
-	 * @returns {Numeric}
-	**/
+/**
+ * @name nitch.math.distance
+ * @method
+ * @description Works out the distance between two elements based on their coordinates
+ * @param {Object} obj1 The first element
+ * @param {Numeric} obj1.x The object's x
+ * @param {Numeric} obj1.y The object's y
+ * @param {Object} obj2 The second element
+ * @param {Numeric} obj2.x The object's x
+ * @param {Numeric} obj2.y The object's y
+ * @returns {Numeric}
+**/
 	distance: function(obj1, obj2) {
 		var squared = nitch.math.distanceSquared(obj1,obj2);
 		return Math.sqrt(parseFloat(squared));
 	},
 	
-	/**
-	 * @name nitch.math.distanceSquared
-	 * @method
-	 * @description Works out the distance between two elements based on their coordinates
-	 * @param {Object} obj1 The first element
-	 * @param {Numeric} obj1.x The object's x
-	 * @param {Numeric} obj1.y The object's y
-	 * @param {Object} obj2 The second element
-	 * @param {Numeric} obj2.x The object's x
-	 * @param {Numeric} obj2.y The object's y
-	 * @returns {Numeric}
-	**/
+/**
+ * @name nitch.math.distanceSquared
+ * @method
+ * @description Works out the distance between two elements based on their coordinates
+ * @param {Object} obj1 The first element
+ * @param {Numeric} obj1.x The object's x
+ * @param {Numeric} obj1.y The object's y
+ * @param {Object} obj2 The second element
+ * @param {Numeric} obj2.x The object's x
+ * @param {Numeric} obj2.y The object's y
+ * @returns {Numeric}
+**/
 	distanceSquared: function(obj1, obj2) {
 		return (obj1.x - obj2.x) * (obj1.x - obj2.x) + (obj1.y - obj2.y) * (obj1.y - obj2.y);
 	},
 	
-	/**
-	 * @name nitch.math.within
-	 * @method
-	 * @description Because <a href="http://www.twitter.com/mcvicar">@mcvicar</a> is lazy. This checks that the value is within a max and min value. 
-	 * @param {Numeric} radian The radian you want to convert
-	 * @example nitch.math.within(10, 5, 30); // returns true
-	 *  nitch.math.within(1, 5, 30); // returns false
-	 * @returns {Boolean}
-	**/
+/**
+ * @name nitch.math.within
+ * @method
+ * @description Because <a href="http://www.twitter.com/mcvicar">@mcvicar</a> is lazy. This checks that the value is within a max and min value. 
+ * @param {Numeric} radian The radian you want to convert
+ * @example nitch.math.within(10, 5, 30); // returns true
+ *  nitch.math.within(1, 5, 30); // returns false
+ * @returns {Boolean}
+**/
 	within: function (value, min, max) {
 		return (value >= min && value <= max);
 	}
 },
-	/** 
-	 * @namespace nitch.array
-	 * @description Useful helpers for math related array manipulations
-	**/
+/** 
+ * @namespace nitch.array
+ * @description Useful helpers for math related array manipulations
+**/
 nitch.array =  {
-	/** 
-	 * @namesapce nitch.array.shuffle
-	 * @method
-	 * @description Shuffle an array. 
-	 * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm
-	 * @param {Array} array
-	 * @param {Object} random Optional RNG. Defaults to Math.
-	 * @return {Array} The original array, shuffled.
-	 **/
+/** 
+ * @namesapce nitch.array.shuffle
+ * @method
+ * @description Shuffle an array. 
+ * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm
+ * @param {Array} array
+ * @param {Object} random Optional RNG. Defaults to Math.
+ * @return {Array} The original array, shuffled.
+ **/
 	shuffle: function(array, rng) {
 		var i = array.length, j, swap;
 		if (!rng) rng = Math;
@@ -193,24 +193,24 @@ nitch.array =  {
 		return array;
 	},
 
-	/** 
-	 * @name nitch.array.pushRand
-	 * @method
-	 * @description Insert a value into an array at a random index. The element 
-		previously at that index will be pushed back onto the end. 
-	 * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
-	 * @param {Array} object to shuffle.
-	 * @param {Mixed} value to insert.
-	 * @param {Object} optional RNG. Defaults to Math.
-	 * @return {Number} The new length of the array.
-	**/
+/** 
+ * @name nitch.array.pushRand
+ * @method
+ * @description Insert a value into an array at a random index. The element 
+	previously at that index will be pushed back onto the end. 
+ * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+ * @param {Array} object to shuffle.
+ * @param {Mixed} value to insert.
+ * @param {Object} optional RNG. Defaults to Math.
+ * @return {Number} The new length of the array.
+**/
 	pushRand: function (array, value, rng) {
 		var j = (rng || Math).random() * (array.length + 1) | 0;
 		array.push(array[j]);
 		array[j] = value;
 		return array.length;
 	}
-}
+};
 
 /** 
  * @name nitch.math.rng.random
@@ -220,4 +220,4 @@ nitch.array =  {
 nitch.math.rng.random = function() {
 	if (!nitch.math.rng.generator) nitch.math.rng.generator = nitch.math.Alea();
 	return nitch.math.rng.generator();
-}
+};

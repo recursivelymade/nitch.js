@@ -1,7 +1,15 @@
 nitch.progress = function(elem, opts) {
-
-	this.opts = opts;
-	this.totalLoaded = (typeof opts.defaultLoaded === "number" ? 0 : opts.defaultLoaded);
+	var defaults = {
+		defaultLoaded: 0,
+		assets: { },
+		onComplete: function() { }
+	};
+	
+	if(!elem || nitch.dom(elem).nodeList.length === 0) { throw "No element supplied"; }
+	
+	this.opts = opts || {};
+	this.opts = nitch.util.apply(defaults, this.opts);
+	this.totalLoaded = opts.defaultLoaded;
 	var totalAmount = this.totalLoaded;
 	
 	for (var amount in this.opts.assets){
@@ -24,11 +32,11 @@ nitch.progress = function(elem, opts) {
 		if(this.totalLoaded >= this.total) {
 			this.opts.onComplete();
 		}
-	}
+	},
 	
 	// Check we're not complete already
 	this.complete();
-}
+};
 
 /**
 @namespace nitch.progress

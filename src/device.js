@@ -1,7 +1,7 @@
-	/**
-	 * @namespace nitch.device
-	 * @description Stuff for devices
-	**/
+/**
+ * @namespace nitch.device
+ * @description Stuff for devices
+**/
 nitch.device = {
 	
 	mediaQueries: {
@@ -12,14 +12,13 @@ nitch.device = {
 		iphone3: "only screen and (min-device-width : 320px) and (max-device-width : 480px)"
 	},
 	
-	/**
-	 * @namespace nitch.device.type
-	 * @method
-	 * @description Tries it's best to guess the device type based on the user-agent string sent. All based off <a href="https://github.com/Skookum/categorizr.js">Categorizr.js: Device Detection Scripts</a>
-	 * @returns {string} tv | tablet | mobile | desktop
-	 * @example nitch.device.type()
-	**/
-	
+/**
+ * @namespace nitch.device.type
+ * @method
+ * @description Tries it's best to guess the device type based on the user-agent string sent. All based off <a href="https://github.com/Skookum/categorizr.js">Categorizr.js: Device Detection Scripts</a>
+ * @returns {string} tv | tablet | mobile | desktop
+ * @example nitch.device.type()
+**/	
 	type: function() {
 		var ua = window.navigator.userAgent;
          return  ua.match(/GoogleTV|SmartTV|Internet.TV|NetCast|NETTV|AppleTV|boxee|Kylo|Roku|DLNADOC|CE\-HTML/i) ? 'tv'
@@ -48,13 +47,13 @@ nitch.device = {
                 // Desktop BOT/Crawler/Spider
               : ua.match(/Bot|Crawler|Spider|Yahoo|ia_archiver|Covario-IDS|findlinks|DataparkSearch|larbin|Mediapartners-Google|NG-Search|Snappy|Teoma|Jeeves|TinEye/i) && !ua.match(/Mobile/i) ? 'desktop'
                 // assume it is a Mobile Device (mobile-first)
-              : 'mobile'
+              : 'mobile';
 	},
 	
-	/**
-	 * @name nitch.device.features
-	 * @description Think of this as a shody version of Modernzr. Basically it's an object that will return the availability of some core features
-	 * @example // What Chrome on the desktop returns
+/**
+ * @name nitch.device.features
+ * @description Think of this as a shody version of Modernzr. Basically it's an object that will return the availability of some core features
+ * @example // What Chrome on the desktop returns
 nitch.device.features = { 
 	DeviceOrientationEvent: true
 	OrientationEvent: false
@@ -80,15 +79,15 @@ nitch.device.features = {
 	windowHeight: 802
 	windowWidth: 1432
 }
-	**/
+ **/
 	
-	/**
-	 * @name nitch.device.ft
-	 * @method
-	 * @private
-	 * @returns {object} nitch.device.features
-	 * @example nitch.device.ft()
-	**/
+ /**
+ * @name nitch.device.ft
+ * @method
+ * @private
+ * @returns {object} nitch.device.features
+ * @example nitch.device.ft()
+**/
 	ft: function(debug) {
 		var audio = new Audio();
 		this.features = {
@@ -115,25 +114,25 @@ nitch.device.features = {
 			audioElement: (typeof window.Audio === "undefined" ? false : true),
 			videoElement: (typeof window.Video === "undefined" ? false : true),
 			webGL: (typeof window.WebGLRenderingContext === "undefined" ? false : true)
-		}
+		},
 	
-		if(debug == true) {
+		if(debug === true) {
 			var html = '<ul class="debug-info">';
 			for (var capability in this.features){
 				html += '<li><strong>'+capability+':</strong> '+this.device[capability]+'</li>';
 				}
 			html += '</ul>';
-		  nitch.dom('#container').after(html);
+			nitch.dom('#container').after(html);
 		}
 	},
 	
-	/**
-	 * @namespace nitch.device.watchOrientation
-	 * @method
-	 * @description Adds a class to the body and an event to update when orientation changes for the iPhone 3 (iOS 4.2.1), as it doesn't support media queries in CSS. <div class="label label-important">This is called by default when the document is ready</div>
-	**/
+/**
+ * @namespace nitch.device.watchOrientation
+ * @method
+ * @description Adds a class to the body and an event to update when orientation changes for the iPhone 3 (iOS 4.2.1), as it doesn't support media queries in CSS. <div class="label label-important">This is called by default when the document is ready</div>
+**/
 	watchOrientation: function() {
-		 watchit = function() {
+		watchit = function() {
 			var orientation = window.orientation;
 			if(orientation == 90 || orientation == -90) {
 				nitch.dom("body").removeClass("portrait");
@@ -142,35 +141,35 @@ nitch.device.features = {
 				nitch.dom("body").removeClass("landscape");
 				nitch.dom("body").addClass("portrait");
 			}
-		 }
-		 watchit();
-		 window.addEventListener( "orientationchange", watchit, false );
+		},
+		watchit();
+		window.addEventListener( "orientationchange", watchit, false );
 	},
 
-	/**
-	 * @namespace nitch.device.stylesheet
-	 * @method
-	 * @description Injects a stylesheet based on UserAgent and if it's a mobile, with a media query
-	 * @param {Object} stylesheet 
-	 * @param {string} stylesheet.device Device name with the url of the stylesheet. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
-	 * @param {String} stylesheet.url url of the stylesheet
-	 * @requires MediaMatch.js
-	 * @example nitch.device.stylesheet({
-		desktop: "style/desktop/style.css"
-		tv: "style/tv/style.css"
-		ipad3: "style/ipad3/style.css",
-		ipad2: "style/ipad/style.css",
-		iphone4s: "style/iphone4s/style.css",
-		iphone4: "style/iphone4/style.css",
-		iphone3: "style/iphone/style.css"
-	});
-	**/
+/**
+ * @namespace nitch.device.stylesheet
+ * @method
+ * @description Injects a stylesheet based on UserAgent and if it's a mobile, with a media query
+ * @param {Object} stylesheet 
+ * @param {string} stylesheet.device Device name with the url of the stylesheet. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
+ * @param {String} stylesheet.url url of the stylesheet
+ * @requires MediaMatch.js
+ * @example nitch.device.stylesheet({
+	desktop: "style/desktop/style.css"
+	tv: "style/tv/style.css"
+	ipad3: "style/ipad3/style.css",
+	ipad2: "style/ipad/style.css",
+	iphone4s: "style/iphone4s/style.css",
+	iphone4: "style/iphone4/style.css",
+	iphone3: "style/iphone/style.css"
+});
+**/
 	stylesheet: function(opts) {
 		if(!opts) { return; }
 		
 		nitch.device.stylesheet.prototype.add = function(uri, mediaQuery) {
 			nitch.dom("head").append('<link type="text/css" rel="stylesheet" media="'+mediaQuery+'" href="'+uri+'" />');
-		}
+		},
 
 		var device = nitch.device.type();
 	
@@ -190,24 +189,23 @@ nitch.device.features = {
 		}
 	},
 	
-	/**
-	* @name nitch.device.setAppcache
-	* @method
-	* @description Injects an appcache manifest based on UserAgent and if it's a mobile, with a media query
-	* @param {Object} appcache
-	* @param {String} appcache.device Device name with the url of the manifest
-	* @param {String} appcache.url Url of the manifest. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
-	* @requires MediaMatch.js
-	* @example
-	nitch.device.appcache({
-		desktop: "style/desktop/appcache.manifest",
-		ipad3: "style/ipad3/appcache.manifest",
-		ipad2: "style/ipad/appcache.manifest",
-		iphone4s: "style/iphone4s/appcache.manifest",
-		iphone4: "style/iphone4/appcache.manifest",
-		iphone3: "style/iphone/appcache.manifest"
-	});
-	**/
+/**
+ * @name nitch.device.setAppcache
+ * @method
+ * @description Injects an appcache manifest based on UserAgent and if it's a mobile, with a media query
+ * @param {Object} appcache
+ * @param {String} appcache.device Device name with the url of the manifest
+ * @param {String} appcache.url Url of the manifest. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
+ * @requires MediaMatch.js
+ * @example nitch.device.appcache({
+	desktop: "style/desktop/appcache.manifest",
+	ipad3: "style/ipad3/appcache.manifest",
+	ipad2: "style/ipad/appcache.manifest",
+	iphone4s: "style/iphone4s/appcache.manifest",
+	iphone4: "style/iphone4/appcache.manifest",
+	iphone3: "style/iphone/appcache.manifest"
+});
+**/
 	appcache: function(opts) {
 		if (window.applicationCache && opts) {
 			
@@ -230,4 +228,4 @@ nitch.device.features = {
 		}
 	}
 
-}
+};

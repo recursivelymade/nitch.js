@@ -16,7 +16,7 @@ nitch.modal = function(elem, opts) {
 		ariaProp: "polite",
 		ariaRole: "dialog",
 		maskClose: true
-	}
+	};
 	
 	this.visiblity = "hidden";
 	this.opts = nitch.util.apply(defaults, opts);
@@ -40,17 +40,17 @@ nitch.modal = function(elem, opts) {
 	
 	this.elem.attr("aria-live", this.opts.ariaProp).attr("role", this.opts.ariaRole);
 
-	/**
-	 * @namespace nitch.modal.show
-	 * @method 
-	 * @description Shows the modal
-	**/
+/**
+ * @namespace nitch.modal.show
+ * @method 
+ * @description Shows the modal
+**/
 	nitch.modal.prototype.show = function() {
-	/**
-	 * @name nitch.modal.show#event:show
-	 * @event
-	 * @description Fired when the modal is about to appear on the screen.
-	**/
+/**
+ * @name nitch.modal.show#event:show
+ * @event
+ * @description Fired when the modal is about to appear on the screen.
+**/
 		this.elem.fire("show");
 		if(this.mask.getStyle("display") == "none") {
 			this.mask.css("display:block");
@@ -58,49 +58,49 @@ nitch.modal = function(elem, opts) {
 		
 		this.elem.css("display:block");
 		
-	/**
-	 * @name nitch.modal.show#event:shown
-	 * @event
-	 * @description Fired when the modal has appeared on the screen.
-	**/
+/**
+ * @name nitch.modal.show#event:shown
+ * @event
+ * @description Fired when the modal has appeared on the screen.
+**/
 		this.elem.fire("shown");
 		this.visiblity = "shown";
 	},
 	
-	/**
-	 * @namespace nitch.modal.hide
-	 * @method 
-	 * @description Hides the modal
-	**/
+/**
+ * @namespace nitch.modal.hide
+ * @method 
+ * @description Hides the modal
+**/
 	nitch.modal.prototype.hide = function() {
-	/**
-	 * @name nitch.modal.show#event:hide
-	 * @event
-	 * @description Fired when the modal is about to be hidden from the screen.
-	**/
+/**
+ * @name nitch.modal.show#event:hide
+ * @event
+ * @description Fired when the modal is about to be hidden from the screen.
+**/
 		this.elem.fire("hide");
 		this.mask.css("display:none");
 		this.elem.css("display:none");
 		
-	/**
-	 * @name nitch.modal.show#event:hidden
-	 * @event
-	 * @description Fired when the modal is hidden on the screen.
-	**/
+/**
+ * @name nitch.modal.show#event:hidden
+ * @event
+ * @description Fired when the modal is hidden on the screen.
+**/
 		this.elem.fire("hidden");
 		this.visiblity = "hidden";
 	},
 	
-	/**
-	 * @namespace nitch.modal.toggle
-	 * @method 
-	 * @description Toggles the modal from hidden to shown
-	**/
+/**
+ * @namespace nitch.modal.toggle
+ * @method 
+ * @description Toggles the modal from hidden to shown
+**/
 	nitch.modal.prototype.toggle = function() {
 		if(this.elem.getStyle("display") == "block") {
 			this.hide();
 		} else {
 			this.show();
 		}
-	}
-}
+	};
+};

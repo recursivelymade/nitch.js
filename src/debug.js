@@ -14,7 +14,7 @@ nitch.debug.performance = function(opts) {
 		left: 0
 	};
 	
-	this.opts = nitch.util.apply(defaults, opts);
+	this.opts = nitch.util.apply(defaults, this.opts);
 	
 	this.frames = 0;
 	this.time = Date.now();
@@ -36,7 +36,7 @@ nitch.debug.performance = function(opts) {
 	nitch.debug.performance.prototype.update = function() {
 		nitch.dom("#per-ms").text(this.msInfo());
 		nitch.dom("#per-fps").text(this.fpsInfo());
-	}
+	},
 	
 	nitch.debug.performance.prototype.msInfo = function() {
 		this.time = Date.now();
@@ -55,10 +55,10 @@ nitch.debug.performance = function(opts) {
 		this.timeLastSecond = this.time;
 		this.frames = 0;
 		return this.fps + " (min: " + this.fpsMin + ", max: " + this.fpsMax + ")";
-	}
+	};
 	
 	var that = this;
-    setInterval(function () { that.update() }, 1000 / this.opts.fps)
+    setInterval(function () { that.update(); }, 1000 / this.opts.fps);
 },
 
 /**
@@ -69,4 +69,4 @@ nitch.debug.performance = function(opts) {
 **/
 nitch.debug.screensafe = function() {
 	return;
-}
+};

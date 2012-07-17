@@ -5,4 +5,4 @@
  * and apply the right file type dependant on support from the browser
 **/
 nitch.music = function() {
-}
+};
