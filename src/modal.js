@@ -19,26 +19,26 @@ nitch.modal = function(elem, opts) {
 	};
 	
 	this.visiblity = "hidden";
-	this.opts = nitch.util.apply(defaults, opts);
+	options = nitch.util.apply(defaults, opts);
 	this.mask = nitch.dom("#modal-backdrop");
 	this.elem =  nitch.dom(elem);
 	
-	if(this.elem.nodeList.length === 0) { return; }
-
+	if(!elem || this.elem.nodeList.length === 0) { throw TypeError("No element supplied or found"); }
+	
 // Check if we already have a mask set up
 	if (!this.mask.nodeList[0]) { 
 		nitch.dom("body").append('<div id="modal-backdrop"></div>');
 		this.mask = nitch.dom("#modal-backdrop");
 	}
 	
-	if (this.opts.maskClose) {
+	if (options.maskClose) {
 		var that = this;
 		nitch.dom('#modal-backdrop').on('click',function(e) {
 			that.hide();
 		});
 	}
 	
-	this.elem.attr("aria-live", this.opts.ariaProp).attr("role", this.opts.ariaRole);
+	this.elem.attr("aria-live", options.ariaProp).attr("role", options.ariaRole);
 
 /**
  * @namespace nitch.modal.show
