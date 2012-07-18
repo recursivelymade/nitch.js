@@ -6,7 +6,6 @@ nitch.debug = {},
  * @description Measures the performance of your game
 **/	
 nitch.debug.performance = function(opts) {
-	this.opts = opts ? opts : {};
 	
 	var defaults = {
 		fps: 58,
@@ -14,7 +13,7 @@ nitch.debug.performance = function(opts) {
 		left: 0
 	};
 	
-	this.opts = nitch.util.apply(defaults, this.opts);
+	options = nitch.util.apply(defaults, opts);
 	
 	this.frames = 0;
 	this.time = Date.now();
@@ -27,7 +26,7 @@ nitch.debug.performance = function(opts) {
 	this.msMin = 1000;
 	this.msMax = 0;
 	
-	var infoPanel = '<div id="performance" style="top:'+this.opts.top+'px;left:'+this.opts.left+'px">';
+	var infoPanel = '<div id="performance" style="top:'+options.top+'px;left:'+options.left+'px">';
 	infoPanel += '<p><strong>FPS:</strong> <span id="per-fps"></span></p>';
 	infoPanel += '<p><strong>MS:</strong> <span id="per-ms"></span></p>';
 	infoPanel += '</div>';
@@ -58,8 +57,22 @@ nitch.debug.performance = function(opts) {
 	};
 	
 	var that = this;
-    setInterval(function () { that.update(); }, 1000 / this.opts.fps);
+    setInterval(function () { that.update(); }, 1000 / options.fps);
 },
+
+/**
+ * @name nitch.debug.timing
+ * @class
+ * @description Wrapper and displayer of the <a href="https://developer.mozilla.org/en/Navigation_timing">Navigation Timing API</a> if the browser supports it
+**/	
+nitch.debug.timing = function() {
+	window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+
+	var timing = performance.timing || {};
+	var navigation = performance.navigation || {};
+	
+	if(!timing.navigationStart) { return false; }
+}
 
 /**
  * @name nitch.debug.screensafe
