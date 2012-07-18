@@ -173,7 +173,7 @@ nitch.math = {
 **/
 nitch.array =  {
 /** 
- * @namesapce nitch.array.shuffle
+ * @name nitch.array.shuffle
  * @method
  * @description Shuffle an array. 
  * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm
