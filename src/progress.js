@@ -7,37 +7,40 @@ nitch.progress = function(elem, opts) {
 	
 	if(!elem || nitch.dom(elem).nodeList.length === 0) { throw TypeError("No element supplied"); }
 	
-	this.opts = opts || {};
-	this.opts = nitch.util.apply(defaults, this.opts);
-	this.totalLoaded = opts.defaultLoaded;
+	var options = nitch.util.apply(defaults, opts);
+	this.totalLoaded = options.defaultLoaded;
 	var totalAmount = this.totalLoaded;
 	
-	for (var amount in this.opts.assets){
-		totalAmount = totalAmount + (typeof this.opts.assets[amount] === "number" ? this.opts.assets[amount] : 0) ;
+	for (var amount in options.assets){
+		totalAmount = totalAmount + (typeof options.assets[amount] === "number" ? options.assets[amount] : 0) ;
 	}
 	this.total = totalAmount;
 	
-	nitch.dom(elem).after('<div class="progress" role="progressbar" aria-valuenow="'+opts.defaultLoaded+'" aria-valuemin="'+opts.defaultLoaded+'" aria-valuemax="'+this.total+'"><div style="width: '+opts.defaultLoaded+'%;" class="bar"></div></div>');
+	nitch.dom(elem).after('<div class="progress" role="progressbar" aria-valuenow="'+options.defaultLoaded+'" aria-valuemin="'+options.defaultLoaded+'" aria-valuemax="'+this.total+'"><div style="width: '+options.defaultLoaded+'%;" class="bar"></div></div>');
 	
 	nitch.progress.prototype.loaded = function(asset) {
-		if(this.opts.assets[asset]) {
-			this.totalLoaded = this.totalLoaded + this.opts.assets[asset];
-			// Set asset to 0 so if called again it has no affect on the total loaded
-			this.opts.assets[asset] = 0;
-			this.complete();
+		var that = this; // I'll hate myself even more in the morning for this...
+		complete = function() {
+			nitch.dom("div.progress").attr("aria-valuenow", that.totalLoaded);
+			nitch.dom("div.progress .bar").css("width:"+that.totalLoaded+"%;");
+			if(that.totalLoaded >= that.total) {
+				options.onComplete();
+			}
 		}
-	},
 	
-	nitch.progress.prototype.complete = function() {
-		nitch.dom(".progress").attr("aria-valuenow", this.totalLoaded);
-		nitch.dom(".progress .bar").css("width:"+this.totalLoaded+"%;");
-		if(this.totalLoaded >= this.total) {
-			this.opts.onComplete();
+		if(options.assets[asset]) {
+			this.totalLoaded = this.totalLoaded + options.assets[asset];
+			// Set asset to 0 so if called again it has no affect on the total loaded
+			options.assets[asset] = 0;
+			complete();
 		}
-	},
+	}
 	
 	// Check we're not complete already
-	this.complete();
+	// I'm going to hate myself in the morning for this...
+	if(this.totalLoaded >= this.total) {
+		options.onComplete();
+	}
 };
 
 /**
