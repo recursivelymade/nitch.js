@@ -5,7 +5,7 @@ nitch.progress = function(elem, opts) {
 		onComplete: function() { }
 	};
 	
-	if(!elem || nitch.dom(elem).nodeList.length === 0) { throw "No element supplied"; }
+	if(!elem || nitch.dom(elem).nodeList.length === 0) { throw TypeError("No element supplied"); }
 	
 	this.opts = opts || {};
 	this.opts = nitch.util.apply(defaults, this.opts);
