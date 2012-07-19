@@ -60,18 +60,106 @@ nitch.debug.performance = function(opts) {
     setInterval(function () { that.update(); }, 1000 / options.fps);
 },
 
+
 /**
  * @name nitch.debug.timing
  * @class
- * @description Wrapper and displayer of the <a href="https://developer.mozilla.org/en/Navigation_timing">Navigation Timing API</a> if the browser supports it
-**/	
-nitch.debug.timing = function() {
+ * @description Wrapper for the <a href="https://developer.mozilla.org/en/Navigation_timing">Navigation timing API</a> to help you debug your game
+ * @param {Object} opts
+ * @param {Boolean} opts.list List print out the performance timing and navigation results in a definition list at the end of the &lt;body&gt;
+ * @param {String} opts.timeline Generate a timeline like Firebug's network tab or <a href="https://developers.google.com/chrome-developer-tools/docs/timeline">Chrome's timeline panel</a> <strong>after</strong> the element specified
+ * @example nitch.debug.network({list:true}); // prints it out
+ * nitch.debug.network({timeline:"#game"}); // prints timeline
+**/
+nitch.debug.timing = function(opts) {
 	window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
-
 	var timing = performance.timing || {};
 	var navigation = performance.navigation || {};
+	timing.legacyNavigationStart = new Date().getTime();
+	sectionText: {
+		unloadEventEnd: "Last page unloaded ",
+		legacyNavigationStart: "Legacy navigation started ~",
+		loadEventEnd: "Page loaded "
+	},
 	
+	barText: {
+		redirectStart: "Redirects",
+		fetchStart: "Fetch",
+		domainLookupStart: "DNS",
+		connectStart: "Connect",
+		requestStart: "Request",
+		responseStart: "Response",
+		loadEventStart: "Load event"
+	}
+
 	if(!timing.navigationStart) { return false; }
+	// Check that it's not called twice and throw a TypeError
+
+	percentage: function(event) {
+		var begin = timing.navigationStart
+		var end = timing.loadEventEnd
+		var thisTiming = timing[event];
+		var totalDuration = end - begin;
+		var thisDuration = thisTiming - begin;
+		return Math.round(100.0 * thisDuration / totalDuration);
+	};
+	
+	milliseconds: function(startEvent, endEvent) {
+		var begin = timing[startEvent];
+		var end = timing[endEvent];
+		if (!begin || !end) return "n/a";
+		return (end - begin) + "ms";
+	};
+	
+	loadSection: function(section) {
+		return '<div class="navSection" id="nitch-'+section+'" style="width:'+percentage(section)+'%">'+sectionText[section] + milliseconds('navigationStart',section)+'</div>';
+	};
+	
+	loadBar: function(startEvent,endEvent) {
+		var startPercent = percentage(startEvent);
+		var endPercent = percentage(endEvent);
+		var calulatedWidth = endPercent - startPercent;
+		var width = calulatedWidth > 0 ? calulatedWidth+"%": "1px";
+		return '<div class="navBar" id="nitch-'+startEvent+'" style="width:'+width'">'+barText[startEvent] + milliseconds(startEvent,endEvent)+'</div>';
+	};
+
+	if(opts.list === true) {
+		var list = '<div id="nitch-timing-list"><dl><dt>Navigation</dt>';
+		var nav_type = ['Navigate', 'Reload', 'Back/Forward'];
+		
+		for (var i = 0; i < nav_type.length; i++) {
+			list += "<dd><strong>"+ nav_type[i] +"</strong>: " + navigation[nav_type[i]] + "</dd>";
+		}
+
+		list += "<dt>Timing</dt>";
+		for (var prop in timing) {
+			if (timing.hasOwnProperty(prop)) {
+				list += "<dd><strong>"+ prop +"</strong>: " + timing[prop] + "</dd>";
+			}
+		}
+		
+		list += "</dl></div>";
+		nitch.dom("body").after(list);
+	}
+
+	if(opts.timeline === true) {
+		var timeline = '<div id="nitch-timeline"><div class="navSection" id="navigationStart">Navigation started 0ms</div>';
+		timeline += loadSection('unloadEventEnd');
+		timeline += loadSection('legacyNavigationStart');
+		timeline += loadSection('loadEventEnd');
+
+		timeline += loadBar('redirectStart', 'redirectEnd');
+		timeline += loadBar('fetchStart', 'responseEnd');
+		timeline += loadBar('domainLookupStart', 'domainLookupEnd');
+		timeline += loadBar('connectStart', 'connectEnd');
+		timeline += loadBar('requestStart', 'responseStart');
+		timeline += loadBar('responseStart', 'responseEnd');
+		timeline += loadBar('loadEventStart', 'loadEventEnd');
+		timeline += "</div>";
+		
+		nitch.dom(opts.timeline).after(timeline);
+	}
+  
 }
 
 /**
