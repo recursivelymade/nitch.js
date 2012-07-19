@@ -428,6 +428,64 @@ nitch.nodeList = function(selector) {
 	
 	return this;
 };
+
+/**
+ * @name nitch.events.visibly
+ * @class
+ * @description Wrapper supporting the <a href="https://developer.mozilla.org/en/DOM/Using_the_Page_Visibility_API">Page Visibility API</a>, which will fire events when people hide the window (e.g. change tabs because the boss is coming). <span class="label label-note">We don't support the &quot;prerender&quot; visibility state</span>.
+ * @param {Object} opts
+ * @param {Function} opts.onVisible Fires when the page becomes visible
+ * @param {Function} opts.onHidden Fires when the page becomes visible
+ * @example nitch.events.visibly({
+ * onVisible: function() { yourGame.restart(); },
+ * onHidden: function() { yourGame.pause(); }
+ * });
+**/
+nitch.events.visibly = function(opts) {
+	var hidden, visible, visibilityChange;
+	
+	if (typeof document.hidden !== "undefined") {  
+		hidden = "hidden";
+		visible = "visible";
+		visibilityChange = "visibilitychange";  
+	} else if (typeof document.mozHidden !== "undefined") {  
+		hidden = "mozHidden";
+		visible = "mozVisible";
+		visibilityChange = "mozvisibilitychange";  
+	} else if (typeof document.msHidden !== "undefined") {  
+		hidden = "msHidden";
+		visible = "msVisible";
+		visibilityChange = "msvisibilitychange";  
+	} else if (typeof document.webkitHidden !== "undefined") {  
+		hidden = "webkitHidden";
+		visible = "webkitVisible";
+		visibilityChange = "webkitvisibilitychange"
+	} else if (typeof document.oHidden !== "undefined") {  
+		hidden = "oHidden";
+		visible = "oVisible";
+		visibilityChange = "ovisibilitychange";  
+	} else {
+		return;
+	}
+	
+	visibilityCallback: function() {  
+		if (document[hidden]) {  
+			options.onHidden(visible);
+		} else if(document[visible]) {  
+			options.onVisible();
+		}  
+	}
+	
+	var defaults = {
+		onVisible: function() { },
+		onHidden: function() { }
+	}
+
+	var options = nitch.util.apply(defaults, opts);
+	document.addEventListener(visibilityChange, visibilityCallback, false);  
+	
+};
+
 /**
  * @namespace nitch.util
  * @description Language utilities
