@@ -14,8 +14,7 @@ ProgressTest.prototype.testProgress = function() {
 	var progress = new nitch.progress("#loader", {defaultLoaded: 0, assets: {'audio': 50, 'images':25, 'somethingElse': 25 }, onComplete: function() { completed = true; } });
 
 	assertNotNull(document.getElementById('loader'));
-//	assertClassName("progress", "div");
-//	assertClassName("bar", "div");
+	assertNotNull(document.getElementById('nitch-progress'));
 	assertEquals(100, progress.total);
 	assertEquals(0, progress.totalLoaded);
 	

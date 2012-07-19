@@ -19,21 +19,21 @@ nitch.modal = function(elem, opts) {
 	};
 	
 	this.visiblity = "hidden";
-	options = nitch.util.apply(defaults, opts);
-	this.mask = nitch.dom("#modal-backdrop");
+	var options = nitch.util.apply(defaults, opts);
+	this.mask = nitch.dom("#nitch-modal-backdrop");
 	this.elem =  nitch.dom(elem);
 	
 	if(!elem || this.elem.nodeList.length === 0) { throw TypeError("No element supplied or found"); }
 	
 // Check if we already have a mask set up
 	if (!this.mask.nodeList[0]) { 
-		nitch.dom("body").append('<div id="modal-backdrop"></div>');
-		this.mask = nitch.dom("#modal-backdrop");
+		nitch.dom("body").append('<div id="nitch-modal-backdrop"></div>');
+		this.mask = nitch.dom("#nitch-modal-backdrop");
 	}
 	
 	if (options.maskClose) {
 		var that = this;
-		nitch.dom('#modal-backdrop').on('click',function(e) {
+		nitch.dom('#nitch-modal-backdrop').on('click',function(e) {
 			that.hide();
 		});
 	}
