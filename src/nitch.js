@@ -385,38 +385,37 @@ nitch.nodeList = function(selector) {
 	nitch.nodeList.prototype.touchandhold = function(elem, opts) {
 		if(!elem) { return; }
 		var hasTouch = (typeof window.ontouchstart === "undefined" ? false : true);
-		opts = opts ? opts : {};
 		var defaults = {
 			start: function() { },
 			move: function() { },
 			release: function() { }
 		},
 		
-		opts = nitch.util.apply(defaults, opts);
+		options = nitch.util.apply(defaults, opts);
 		var view = nitch.dom(elem);
 	
 		if(!hasTouch) {
 			// Must be a desktop browser, please say doesn't have a touch screen....
 			view.on('mousedown', function(eventStart) { 
-				opts.start(eventStart); 
-				window.addEventListener("mousemove", opts.move, false); 
+				options.start(eventStart); 
+				window.addEventListener("mousemove", options.move, false); 
 				
 			});
 			var that = this;
 			view.on('mouseup', function(eventRelease) { 
-				opts.release(eventRelease); 
-				window.removeEventListener("mousemove", opts.move, false); 
+				options.release(eventRelease); 
+				window.removeEventListener("mousemove", options.move, false); 
 			});
 	
 		} else {
 			view.on('touchstart', function(eventStart) {  
-				opts.start(eventStart); 
-				that.on('touchmove', opts.move);
+				options.start(eventStart); 
+				that.on('touchmove', options.move);
 			});
 			
 			view.on('touchend', function(eventRelease) {
-				opts.release(eventRelease); 
-				that.detach('touchmove', opts.move);
+				options.release(eventRelease); 
+				that.detach('touchmove', options.move);
 			});
 			
 			// We may need to capture clicks in the future as VoiceOver on iOS sends them instead of touchevents
@@ -441,49 +440,50 @@ nitch.nodeList = function(selector) {
  * onHidden: function() { yourGame.pause(); }
  * });
 **/
-nitch.events.visibly = function(opts) {
-	var hidden, visible, visibilityChange;
+nitch.events = {
+	visibly: function(opts) {
+		var hidden, visible, visibilityChange;
+		
+		if (typeof document.hidden !== "undefined") {  
+			hidden = "hidden";
+			visible = "visible";
+			visibilityChange = "visibilitychange";  
+		} else if (typeof document.mozHidden !== "undefined") {  
+			hidden = "mozHidden";
+			visible = "mozVisible";
+			visibilityChange = "mozvisibilitychange";  
+		} else if (typeof document.msHidden !== "undefined") {  
+			hidden = "msHidden";
+			visible = "msVisible";
+			visibilityChange = "msvisibilitychange";  
+		} else if (typeof document.webkitHidden !== "undefined") {  
+			hidden = "webkitHidden";
+			visible = "webkitVisible";
+			visibilityChange = "webkitvisibilitychange";
+		} else if (typeof document.oHidden !== "undefined") {  
+			hidden = "oHidden";
+			visible = "oVisible";
+			visibilityChange = "ovisibilitychange";  
+		} else {
+			return;
+		}
+		
+		visibilityCallback = function() {  
+			if (document[hidden]) {  
+				options.onHidden(visible);
+			} else if(document[visible]) {  
+				options.onVisible();
+			}  
+		};
+		
+		var defaults = {
+			onVisible: function() { },
+			onHidden: function() { }
+		}
 	
-	if (typeof document.hidden !== "undefined") {  
-		hidden = "hidden";
-		visible = "visible";
-		visibilityChange = "visibilitychange";  
-	} else if (typeof document.mozHidden !== "undefined") {  
-		hidden = "mozHidden";
-		visible = "mozVisible";
-		visibilityChange = "mozvisibilitychange";  
-	} else if (typeof document.msHidden !== "undefined") {  
-		hidden = "msHidden";
-		visible = "msVisible";
-		visibilityChange = "msvisibilitychange";  
-	} else if (typeof document.webkitHidden !== "undefined") {  
-		hidden = "webkitHidden";
-		visible = "webkitVisible";
-		visibilityChange = "webkitvisibilitychange"
-	} else if (typeof document.oHidden !== "undefined") {  
-		hidden = "oHidden";
-		visible = "oVisible";
-		visibilityChange = "ovisibilitychange";  
-	} else {
-		return;
+		var options = nitch.util.apply(defaults, opts);
+		document.addEventListener(visibilityChange, visibilityCallback, false);  
 	}
-	
-	visibilityCallback: function() {  
-		if (document[hidden]) {  
-			options.onHidden(visible);
-		} else if(document[visible]) {  
-			options.onVisible();
-		}  
-	}
-	
-	var defaults = {
-		onVisible: function() { },
-		onHidden: function() { }
-	}
-
-	var options = nitch.util.apply(defaults, opts);
-	document.addEventListener(visibilityChange, visibilityCallback, false);  
-	
 };
 
 /**

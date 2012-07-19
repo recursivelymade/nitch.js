@@ -16,13 +16,13 @@ nitch.progress = function(elem, opts) {
 	}
 	this.total = totalAmount;
 	
-	nitch.dom(elem).after('<div class="progress" role="progressbar" aria-valuenow="'+options.defaultLoaded+'" aria-valuemin="'+options.defaultLoaded+'" aria-valuemax="'+this.total+'"><div style="width: '+options.defaultLoaded+'%;" class="bar"></div></div>');
+	nitch.dom(elem).after('<div id="nitch-progress" class="progress" role="progressbar" aria-valuenow="'+options.defaultLoaded+'" aria-valuemin="'+options.defaultLoaded+'" aria-valuemax="'+this.total+'"><div style="width: '+options.defaultLoaded+'%;" class="bar"></div></div>');
 	
 	nitch.progress.prototype.loaded = function(asset) {
 		var that = this; // I'll hate myself even more in the morning for this...
 		complete = function() {
-			nitch.dom("div.progress").attr("aria-valuenow", that.totalLoaded);
-			nitch.dom("div.progress .bar").css("width:"+that.totalLoaded+"%;");
+			nitch.dom("#nitch-progress").attr("aria-valuenow", that.totalLoaded);
+			nitch.dom("#nitch-progress .bar").css("width:"+that.totalLoaded+"%;");
 			if(that.totalLoaded >= that.total) {
 				options.onComplete();
 			}
