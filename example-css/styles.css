@@ -55,6 +55,7 @@
 	-webkit-background-clip:padding-box;
 	background-clip:padding-box;
 }
+
 #nitch-progress .bar{
 	width:0%;
 	height:18px;
@@ -82,4 +83,43 @@
 	-ms-transition:0.6s;
 	-o-transition:0.6s;
 	transition:0.6s;
+}
+
+#nitch-timeline {
+  background: #333;
+  border: 1px solid black;
+  color: #DDD;
+  position: relative;
+  text-shadow: 1px 1px 1px #111;
+  width: 100%;
+  color:#fff;
+  font-size:small;
+}
+
+#nitch-timeline .navSection {
+  border-right: 1px dashed #ccc;
+  height: 100%;
+  text-align: right;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+#nitch-timeline #nitch-unloadEventEnd {
+	top:2ex;
+}
+
+#nitch-timeline #nitch-legacyNavigationStart {
+	top:4ex
+}
+
+#nitch-timeline .navBar {
+  background: #1A89D7;
+  background: #E9EDE8;
+  border-radius: 5px;
+  height: 3.5ex;
+  -webkit-transition-property: width;
+  -webkit-transition-duration: .5s;
+  white-space: nowrap;
+  z-index: 2;
 }

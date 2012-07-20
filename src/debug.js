@@ -121,7 +121,8 @@ nitch.debug = {
 			var endPercent = percentage(endEvent);
 			var calulatedWidth = endPercent - startPercent;
 			var width = calulatedWidth > 0 ? calulatedWidth+"%": "1px";
-			return '<div class="navBar" id="nitch-' + startEvent + '" style="width:' + width + '">'+ barText[startEvent] + " "+ milliseconds(startEvent,endEvent) + '</div>';
+			var leftMargin = startPercent > 0 ? startPercent : 0;
+			return '<div class="navBar" id="nitch-' + startEvent + '" style="width:' + width + '; margin-left:' + leftMargin + '%">'+ barText[startEvent] + " "+ milliseconds(startEvent,endEvent) + '</div>';
 		};
 	
 		if(opts.list === true) {
