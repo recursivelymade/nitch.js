@@ -13,7 +13,6 @@
  * @param {Object} [opts.headers] Object to send additional HTTP headers
 **/
 nitch.xhr = function(url, opts) {
-	this.opts = opts ? opts : {};
 	var defaults = {
 		method: 'get',
 		async: true,
@@ -22,7 +21,7 @@ nitch.xhr = function(url, opts) {
 		params: null
 	};
 	
-	this.opts = nitch.util.apply(defaults, this.opts);
+	this.opts = nitch.util.apply(defaults, opts);
 
 	var that = this;
 	var req = new XMLHttpRequest();
@@ -47,7 +46,7 @@ nitch.xhr = function(url, opts) {
 	req.handleResp = this.opts.callback;
 	req.handleError = this.opts.error;
 	
-	hdl = function (){
+	var hdl = function (){
 		if(req.readyState == 4) {
 			delete(that.xmlHttpRequest);
 			if((/^[20]/).test(req.status)) {
