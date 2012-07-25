@@ -132,7 +132,7 @@ nitch.device.features = {
  * @description Adds a class to the body and an event to update when orientation changes for the iPhone 3 (iOS 4.2.1), as it doesn't support media queries in CSS. <div class="label label-important">This is called by default when the document is ready</div>
 **/
 	watchOrientation: function() {
-		watchit = function() {
+		nitch.watchit = function() {
 			var orientation = window.orientation;
 			if(orientation == 90 || orientation == -90) {
 				nitch.dom("body").removeClass("portrait");
@@ -142,8 +142,8 @@ nitch.device.features = {
 				nitch.dom("body").addClass("portrait");
 			}
 		},
-		watchit();
-		window.addEventListener( "orientationchange", watchit, false );
+		nitch.watchit();
+		window.addEventListener( "orientationchange", nitch.watchit, false );
 	},
 
 /**
