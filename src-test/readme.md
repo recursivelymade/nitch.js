@@ -2,12 +2,12 @@ All the tests are written for testing under [JSTestDriver](http://code.google.co
 
 To run the tests you'll need to start the server on the command line
 ```
-java -jar JsTestDriver-1.3.4.b.jar --port 9876
+java -jar JsTestDriver-1.3.4.b.jar --port 4224
 ```
 
-Point the browsers you want to test at http://localhost:9876
+Point the browsers you want to test at http://localhost:4224
 
 Then run the tests on the command line
 ```
-java -jar JsTestDriver-1.3.4.b.jar --tests all
+java -jar ../../build-tools/JsTestDriver/JsTestDriver-1.3.4.b.jar --tests all --config nitch.test
 ```
