@@ -43,9 +43,9 @@ stateMachine.prototype.testCanFunctions = function() {
 	
 	assertTrue(sm.can('warn'));
 	assertEquals('green', sm.current);
-	assertEquals("should NOT be able to panic from green state", sm.can('panic'));
-	assertEquals("should NOT be able to clam from green state", sm.cannot('calm'));
-	assertEquals("should NOT be able to clear from green state", sm.can('clear'));
+	assertFalse(sm.can('panic'));
+	assertTrue(sm.cannot('calm'));
+	assertFalse(sm.can('clear'));
 }
 
 stateMachine.prototype.testMoveStates = function() {
