@@ -1,6 +1,6 @@
 /**
  * @namespace nitch
- * @description Nitch is designed as a multi-device HTML5 games framework
+ * @description Nitch is designed as a response design HTML5 games framework
  * @externals { "name": "classList.js", "url": "http://github.com/paulirish/matchMedia.js" }
  * @externals { "name": "mediaMatch.js", "url": "http://github.com/eligrey/classList.js" }
 **/
