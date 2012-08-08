@@ -1,6 +1,0 @@
-[submodule "src/externals/matchMedia.js"]
-	path = src/externals/matchMedia.js
-	url = git://github.com/paulirish/matchMedia.js.git
-[submodule "src/externals/classList.js"]
-	path = src/externals/classList.js
-	url = git://github.com/eligrey/classList.js.git

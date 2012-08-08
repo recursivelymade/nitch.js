@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>nitch - nitch.js</title>
+    
+    <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
+    <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.css">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+	.navbar .brand {
+		padding-right: 0;
+		padding-left: 0;
+		margin-left: 20px;
+		font-weight: bold;
+		color: #666;
+		text-shadow: 0 1px 0 
+		rgba(255, 255, 255, .1), 0 0 30px 
+		rgba(255, 255, 255, .125);
+      }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+	<div class="container">
+	  <a class="brand" href="#">nitch.js</a>
+	</div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="span4">
+			<nav>
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Namespaces</li><li><a href="nitch.html">nitch</a></li><li><a href="nitch.array.html">nitch.array</a></li><li><a href="nitch.device.html">nitch.device</a></li><li><a href="nitch.events.html">nitch.events</a></li><li><a href="nitch.math.html">nitch.math</a></li><li><a href="nitch.music.html">nitch.music</a></li><li><a href="nitch.stats.html">nitch.stats</a></li><li><a href="nitch.util.html">nitch.util</a></li><li class="nav-header">Classes</li><li><a href="nitch.debug.performance.html">nitch.debug.performance</a></li><li><a href="nitch.debug.screensafe.html">nitch.debug.screensafe</a></li><li><a href="nitch.modal.html">nitch.modal</a></li><li><a href="nitch.progress.html">nitch.progress</a></li><li><a href="nitch.statemachine.html">nitch.statemachine</a></li><li><a href="nitch.xhr.html">nitch.xhr</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="span8">
+			
+
+
+
+<section>
+    
+<header>
+    <h1>nitch
+    </h1>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+            <div class="description">Nitch is designed as a multi-device HTML5 games framework</div>
+        
+        
+        
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L1">nitch.js, line 1</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+	<h2 class="subsection-title">External dependancies</h2>
+	<ul>
+	
+		<li><a href="http://github.com/paulirish/matchMedia.js">classList.js</a></li>
+	
+		<li><a href="http://github.com/eligrey/classList.js">mediaMatch.js</a></li>
+	
+	</ul>
+
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+        <h2 class="subsection-title">Classes</h2>
+        
+        <dl>
+            <dt><a href="nitch.modal.html">modal</a></dt>
+            <dd></dd>
+        
+            <dt><a href="nitch.progress.html">progress</a></dt>
+            <dd></dd>
+        
+            <dt><a href="nitch.statemachine.html">statemachine</a></dt>
+            <dd></dd>
+        
+            <dt><a href="nitch.xhr.html">xhr</a></dt>
+            <dd></dd>
+        </dl>
+    
+    
+    
+        <h2 class="subsection-title">Namespaces</h2>
+        
+        <dl>
+            <dt><a href="namespaces.html#nitch.array"><a href="nitch.array.html">array</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.device"><a href="nitch.device.html">device</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.events"><a href="nitch.events.html">events</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.math"><a href="nitch.math.html">math</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.music"><a href="nitch.music.html">music</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.stats"><a href="nitch.stats.html">stats</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#nitch.util"><a href="nitch.util.html">util</a></a></dt>
+            <dd></dd>
+        </dl>
+    
+    
+    
+    
+    
+        <h2 class="subsection-title">Methods</h2>
+        
+        <dl>
+            
+<dt>
+    <h3 class="name" id="addClass">nitch.addClass <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Adds a class to each node in the node list
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L127">nitch.js, line 127</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").addClass("summer");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="after">nitch.after <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Inserts a new element after each element in the nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L211">nitch.js, line 211</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").after("&lt;p&gt;Hello&lt;/p&gt;");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="append">nitch.append <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Inserts a new element after the last child of each element in the nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L226">nitch.js, line 226</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").append("&lt;p&gt;Hello&lt;/p&gt;");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="attr">nitch.attr <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets an attribute on each element in the node list
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L241">nitch.js, line 241</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("img").attr("alt", "Ben's cat Jimmy");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="before">nitch.before <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Inserts a new element before each element in the nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L182">nitch.js, line 182</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").before("&lt;p&gt;Hello&lt;/p&gt;");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="before">nitch.before <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Inserts a new element just inside each element in the nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L197">nitch.js, line 197</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").prepend("&lt;p&gt;Hello&lt;/p&gt;");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="css">nitch.css <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets styles on the nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L48">nitch.js, line 48</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").css("background-color : green; color: #fff;");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="dom">nitch.dom <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Basic DOM selector using <a href="https://developer.mozilla.org/en/DOM/Document.querySelectorAll">querySelectorAll</a> which can be chained
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L28">nitch.js, line 28</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> var main = nitch.dom("#main");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="getStyle">nitch.getStyle <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Gets the style property on the first element in the node list
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L63">nitch.js, line 63</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").getStyle("background-color");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="hasClass">nitch.hasClass <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns if the nodelist has a specific class on it
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L113">nitch.js, line 113</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").hasClass("summer");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="offset">nitch.offset <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Returns the offset properties of
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L74">nitch.js, line 74</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    <h4>Returns:</h4>
+    
+            
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+		<span class="param-type">Object</span> 
+		
+	</dd>
+</dl>
+
+        
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").offset(); // returns { left:10px; top: 10px, width: 200px, height: 200px }</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="remove">nitch.remove <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes an element from the DOM
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L169">nitch.js, line 169</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").remove();</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="removeClass">nitch.removeClass <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Removes a class from each node in the node list
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L141">nitch.js, line 141</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").removeClass("summer");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="text">nitch.text <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets or returns the text of nodelist
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L91">nitch.js, line 91</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").text("Cheese is good");</code></pre>
+
+    
+</dd>
+        
+            
+<dt>
+    <h3 class="name" id="toggleClass">nitch.toggleClass <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Toggles a class on each node in the node list
+    </div>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L155">nitch.js, line 155</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.dom("#main").toggleClass("summer");</code></pre>
+
+    
+</dd>
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+		</div>
+	</div>
+<!--
+
+	<li><strong>appname:</strong> nitch.js</li>
+
+	<li><strong>appdescript:</strong> Nitch is designed as a multi-device HTML5 games framework</li>
+
+	<li><strong>repo:</strong> recursivelymade/nitch.js</li>
+
+	<li><strong>intro:</strong> ../../../../../rmsite/nitch.js/docs/readme.html</li>
+ -->
+<footer>
+    <p>Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Sun Jul 15 2012 23:14:29 GMT+0100 (BST)</p>
+</footer>
+</div>
+
+<script> sh_highlightDocument(); </script>
+</body>
+</html>
