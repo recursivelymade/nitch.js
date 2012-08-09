@@ -4,6 +4,7 @@ nitch.debug = {
  * @name nitch.debug.performance
  * @class
  * @description Measures the performance of your game
+ * @example new nitch.debug.performance();
 **/	
 	performance: function(opts) {
 		
