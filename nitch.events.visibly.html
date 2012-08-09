@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>nitch.progress - nitch.js</title>
+    <title>nitch.events.visibly - nitch.js</title>
     
     <script src="http://shjs.sourceforge.net/sh_main.min.js"> </script>
     <script src="http://shjs.sourceforge.net/lang/sh_javascript.min.js"> </script>
@@ -57,7 +57,7 @@
     
 <header>
     <h1>
-        <span class="ancestors"><a href="nitch.html">nitch</a>.</span>progress
+        <span class="ancestors"><a href="nitch.html">nitch</a><a href="nitch.events.html">.events</a>.</span>visibly
     </h1>
     
 </header>  
@@ -69,7 +69,7 @@
     
         
 <dt>
-    <h3 class="name" id="progress">new nitch.progress <small><span class="type-signature"></span></small></h3>
+    <h3 class="name" id="visibly">new nitch.events.visibly <small><span class="type-signature"></span></small></h3>
     
     
 </dt>
@@ -77,7 +77,7 @@
     
     
     <div class="description">
-        Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default and updates <a href="http://www.w3.org/TR/wai-aria/states_and_properties#aria-valuenow">aria-valuenow</a> as you send loaded assets.
+        Wrapper supporting the <a href="https://developer.mozilla.org/en/DOM/Using_the_Page_Visibility_API">Page Visibility API</a>, which will fire events when people hide the window (e.g. change tabs because the boss is coming). <span class="label label-note">We don't support the &quot;prerender&quot; visibility state</span>.
     </div>
     
     
@@ -105,27 +105,6 @@
 	</thead>
 	
 	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-            
-            <td class="type">
-            
-                        String
-                        
-                    
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">Element to attach the progress bar to</td>
-        </tr>
-	
 	
 	
         <tr>
@@ -158,11 +137,7 @@
 		<th>Type</th>
 		
 		
-		<th>Argument</th>
 		
-		
-		
-		<th>Default</th>
 		
 		
 		<th class="last">Description</th>
@@ -174,73 +149,7 @@
 	
         <tr>
             
-                <td class="name"><code>defaultLoaded</code></td>
-            
-            
-            <td class="type">
-            
-                        Numeric
-                        
-                    
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-                    
-                
-                </td>
-            
-            
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-            
-            <td class="description last">The default amount loaded when the progress bar starts</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>assets</code></td>
-            
-            
-            <td class="type">
-            
-                        Object
-                        
-                    
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    
-                
-                </td>
-            
-            
-            
-                <td class="default">
-                
-                </td>
-            
-            
-            <td class="description last">Object to specific your assets and the percentage of how much they are loaded</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>onComplete</code></td>
+                <td class="name"><code>onVisible</code></td>
             
             
             <td class="type">
@@ -251,20 +160,31 @@
             </td>
             
             
-                <td class="attributes">
-                
+            
+            
+            
+            <td class="description last">Fires when the page becomes visible</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>onHidden</code></td>
+            
+            
+            <td class="type">
+            
+                        Function
+                        
                     
-                
-                </td>
+            </td>
             
             
             
-                <td class="default">
-                
-                </td>
             
             
-            <td class="description last">Function to call once the total of the assets has been reached.</td>
+            <td class="description last">Fires when the page becomes visible</td>
         </tr>
 	
 	
@@ -297,7 +217,7 @@
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/progress.js#L46">progress.js, line 46</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/nitch.js#L431">nitch.js, line 431</a></p>
 	
 
     
@@ -319,20 +239,10 @@
     
         <h4>Example</h4>
         
-    <pre class="sh_javascript"><code> var loader = new nitch.progress("#loading", {
-	defaultLoaded: 40,
-	assets: {
-		audio: 20,
-		video: 20,
-		graphics: 20
-	},
-	onComplete: function() { console.info("I'm done loading"); }
-});
-
-// Then fire your loaded events
-loader.loaded('audio');
-loader.loaded('video');
-loader.loaded('graphics');</code></pre>
+    <pre class="sh_javascript"><code> nitch.events.visibly({
+onVisible: function() { yourGame.restart(); },
+onHidden: function() { yourGame.pause(); }
+});</code></pre>
 
     
 </dd>
