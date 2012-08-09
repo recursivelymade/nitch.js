@@ -4,7 +4,7 @@ nitch.js
 You've heard of [Responsive Web Design](http://en.wikipedia.org/wiki/Responsive_Web_Design) right? Well Nitch is designed as a responsive web game library. The idea is simple, create a game that can be played on any device you like. It offers
 * Simple DOM manipulation
 * Simple events, such as on, off, fire and a custom cross-device "tap" event
-* A state machine to track events through your game
+* A state machine to track events through your game based on [Jake Gordon's Javascript Finite State Machine](https://github.com/jakesgordon/javascript-state-machine/)
 * A progress loader system
 * XHR requests
 * Device and media query detection to deliver the right css and app cache manifest for your device
@@ -12,6 +12,9 @@ You've heard of [Responsive Web Design](http://en.wikipedia.org/wiki/Responsive_
 * Better Math.Random based on the [Fisher–Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 * Some handy utilities like firing a method only once and replacing default values in an object with your own
 * Oh yeah, and a simple modal
+ 
+[Read the full documentation](http://recursivelymade.github.com/nitch.js)
+=========================== 
  
 *Please note*, it's very early days so not everything is guaranteed to work correctly bug reports and pull requests welcome.
 
@@ -35,5 +38,6 @@ Dependencies for development
 * [MediaMatch polyfill](https://github.com/paulirish/matchMedia.js)
 * [ClassList polyfill](https://github.com/eligrey/classList.js)
 * [Google Closure Complier](https://developers.google.com/closure/compiler/)
+* [JsTestDriver](http://code.google.com/p/js-test-driver/)
 * [JSHint](http://www.jshint.com/)
 * [UglifyJS](https://github.com/mishoo/UglifyJS/)
