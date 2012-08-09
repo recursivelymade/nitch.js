@@ -39,6 +39,7 @@ nitch.stats = function() {
  * @description Track click links
  * @param {String} category The category for your event
  * @param {String} action The your event's action
+ * @todo This needs a bit more work, as it needs to know about which links to track
 **/
 	nitch.stats.prototype.link = function(category, link) {
 		var action = link.href;

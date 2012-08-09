@@ -13,8 +13,8 @@ You've heard of [Responsive Web Design](http://en.wikipedia.org/wiki/Responsive_
 * Some handy utilities like firing a method only once and replacing default values in an object with your own
 * Oh yeah, and a simple modal
  
-[Read the full documentation](http://recursivelymade.github.com/nitch.js)
-=========================== 
+[Read the full documentation and see some demos](http://recursivelymade.github.com/nitch.js)
+===========================
  
 *Please note*, it's very early days so not everything is guaranteed to work correctly bug reports and pull requests welcome.
 
