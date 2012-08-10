@@ -16,7 +16,7 @@ nitch.device = {
  * @namespace nitch.device.type
  * @method
  * @description Tries it's best to guess the device type based on the user-agent string sent. All based off <a href="https://github.com/Skookum/categorizr.js">Categorizr.js: Device Detection Scripts</a>
- * @returns {string} tv | tablet | mobile | desktop
+ * @returns {string} &quot;tv&quot; or &quot;tablet&quot; or &quot;mobile&quot; or &quot;desktop&quot;
  * @example nitch.device.type()
 **/	
 	type: function() {
@@ -80,6 +80,22 @@ nitch.device.features = {
 	windowWidth: 1432
 }
  **/
+
+/**
+ * @namespace nitch.device.featureList
+ * @method
+ * @description prints out nitch.device.features to an unordered list after the selector
+ * @param {String} selector The selector the list will appear after 
+ * @example nitch.device.featureList("#game");
+**/	
+	featureList: function(selector) {
+		var html = '<ul id="nitch-device-features">';
+		for (var capability in nitch.device.features){
+			html += '<li><strong>'+capability+':</strong> '+nitch.device.features[capability]+'</li>';
+			}
+		html += '</ul>';
+		nitch.dom(selector).after(html);
+	},
 	
  /**
  * @name nitch.device.ft
@@ -114,15 +130,6 @@ nitch.device.features = {
 			audioElement: (typeof window.Audio === "undefined" ? false : true),
 			videoElement: (typeof window.Video === "undefined" ? false : true),
 			webGL: (typeof window.WebGLRenderingContext === "undefined" ? false : true)
-		}
-	
-		if(debug === true) {
-			var html = '<ul class="debug-info">';
-			for (var capability in this.features){
-				html += '<li><strong>'+capability+':</strong> '+this.device[capability]+'</li>';
-				}
-			html += '</ul>';
-			nitch.dom('#container').after(html);
 		}
 	},
 	
@@ -194,8 +201,8 @@ nitch.device.features = {
  * @method
  * @description Injects an appcache manifest based on UserAgent and if it's a mobile, with a media query
  * @param {Object} appcache
- * @param {String} appcache.device Device name with the url of the manifest
- * @param {String} appcache.url Url of the manifest. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
+ * @param {String} appcache.device Device name with the url of the manifest.  <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
+ * @param {String} appcache.url Url of the manifest.
  * @requires MediaMatch.js
  * @example nitch.device.appcache({
 	desktop: "style/desktop/appcache.manifest",
