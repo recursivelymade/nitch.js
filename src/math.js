@@ -158,7 +158,9 @@ nitch.math = {
  * @name nitch.math.within
  * @method
  * @description Because <a href="http://www.twitter.com/mcvicar">@mcvicar</a> is lazy. This checks that the value is within a max and min value. 
- * @param {Numeric} radian The radian you want to convert
+ * @param {Numeric} value The number you want to check is between min/max
+ * @param {Numeric} min The min number
+ * @param {Numeric} max The max number
  * @example nitch.math.within(10, 5, 30); // returns true
  *  nitch.math.within(1, 5, 30); // returns false
  * @returns {Boolean}
