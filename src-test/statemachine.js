@@ -13,7 +13,7 @@ stateMachine.prototype.testCurrentState = function() {
 }
 
 stateMachine.prototype.testAvailableEvents = function() {
-	sm = new nitch.statemachine({
+	var sm = new nitch.statemachine({
 	  initial: 'green',
 	  events: [
 		{ name: 'warn',  from: 'green',  to: 'yellow' },
@@ -32,7 +32,7 @@ stateMachine.prototype.testAvailableEvents = function() {
 }
 
 stateMachine.prototype.testCanFunctions = function() {
-	sm = new nitch.statemachine({
+	var sm = new nitch.statemachine({
 	  initial: 'green',
 	  events: [
 		{ name: 'warn',  from: 'green',  to: 'yellow' },
@@ -49,7 +49,7 @@ stateMachine.prototype.testCanFunctions = function() {
 }
 
 stateMachine.prototype.testMoveStates = function() {
-	sm = new nitch.statemachine({
+	var sm = new nitch.statemachine({
 	  initial: 'green',
 	  events: [
 		{ name: 'warn',  from: 'green',  to: 'yellow' },
@@ -81,7 +81,7 @@ stateMachine.prototype.testOnStates = function() {
 	var onenter = false;
 	var onafter = false;
 	
-	sm = new nitch.statemachine({
+	var sm = new nitch.statemachine({
 	  initial: 'green',
 	  events: [
 		{ name: 'warn',  from: 'green',  to: 'yellow' },
@@ -91,10 +91,10 @@ stateMachine.prototype.testOnStates = function() {
 	  ],
 	  callbacks: {
 	  	onchangestate: function(event,from,to) { changestate = event + ' from ' + from + ' to ' + to; },
-		onbeforewarn: function() { onbefore = true; },
-		onleaveyellow: function() { onleave = true; },
-		onenteryellow: function() { onenter = true; },
-		onafterwarn: function() { onafter = true; }
+		onBeforewarn: function() { onbefore = true; },
+		onLeaveyellow: function() { onleave = true; },
+		onEnteryellow: function() { onenter = true; },
+		onAfterwarn: function() { onafter = true; }
 	  }
 	});
 

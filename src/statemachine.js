@@ -1,7 +1,33 @@
 /**
  * @name nitch.statemachine
  * @class
- * @description provides a finite state machine for your game. Inspired by <a href="https://github.com/jakesgordon/javascript-state-machine">Jake Gordon's State Machine</a>
+ * @description provides a finite state machine for your game, inspired by <a href="https://github.com/jakesgordon/javascript-state-machine">Jake Gordon's State Machine</a>. <strong>Note</strong> there are some minor differences. The state machine is created with 'new' and the change state callbacks are camel case.
+ * @example var sm = new nitch.statemachine({
+	  initial: 'green',
+	  events: [
+		{ name: 'warn',  from: 'green',  to: 'yellow' },
+		{ name: 'panic', from: 'yellow', to: 'red'    },
+		{ name: 'calm',  from: 'red',    to: 'yellow' },
+		{ name: 'clear', from: 'yellow', to: 'green'  }
+	],
+	  callbacks: {
+	  	onChangeState: function(event,from,to) { changestate = event + ' from ' + from + ' to ' + to; },
+		onBeforewarn: function() { console.info("onBefore Warn called"); },
+		onLeaveyellow: function() { console.info("onLeave Yellow called"); },
+		onEnteryellow: function() { console.info("onEnter Yellow called"); },
+		onAfterwarn: function() { console.info("onAfter Warn called"); }
+	  }
+	  });
+	
+	sm.current(); // returns 'green'
+	
+	sm.can('warn'); // returns true
+	sm.cannot('panic'); // returns true
+	
+	sm.warn(); // changes state to warn. Will have called the onBeforewarn and onEnteryellow functions
+	
+	sm.panic(); // changes state to warn. Will have called the onLeaveyellow and onAfterwarn functions
+ 
 **/
 nitch.statemachine = function(opts) {
 
@@ -40,11 +66,11 @@ nitch.statemachine = function(opts) {
       }
     },
 
-    nitch.statemachine.prototype.beforeEvent = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onbefore' + name],                     name, from, to, args); },
-    nitch.statemachine.prototype.afterEvent = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onafter'  + name] || fsm['on' + name], name, from, to, args); },
-    nitch.statemachine.prototype.leaveState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onleave'  + from],                     name, from, to, args); },
-    nitch.statemachine.prototype.enterState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onenter'  + to]   || fsm['on' + to],   name, from, to, args); },
-    nitch.statemachine.prototype.changeState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onchangestate'],                       name, from, to, args); },
+    nitch.statemachine.prototype.beforeEvent = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onBefore' + name],                     name, from, to, args); },
+    nitch.statemachine.prototype.afterEvent = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onAfter'  + name] || fsm['on' + name], name, from, to, args); },
+    nitch.statemachine.prototype.leaveState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onLeave'  + from],                     name, from, to, args); },
+    nitch.statemachine.prototype.enterState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onEnter'  + to]   || fsm['on' + to],   name, from, to, args); },
+    nitch.statemachine.prototype.changeState = function(fsm, name, from, to, args) { return this.doCallback(fsm, fsm['onChangeState'], name, from, to, args); },
 
 
     nitch.statemachine.prototype.buildEvent = function(name, map, that) {
