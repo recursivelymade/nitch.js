@@ -20,7 +20,7 @@ nitch.progress = function(elem, opts) {
 	
 	nitch.progress.prototype.loaded = function(asset) {
 		var that = this; // I'll hate myself even more in the morning for this...
-		complete = function() {
+		var complete = function() {
 			nitch.dom("#nitch-progress").attr("aria-valuenow", that.totalLoaded);
 			nitch.dom("#nitch-progress .bar").css("width:"+that.totalLoaded+"%;");
 			if(that.totalLoaded >= that.total) {
@@ -34,6 +34,30 @@ nitch.progress = function(elem, opts) {
 			options.assets[asset] = 0;
 			complete();
 		}
+	}
+	
+/**
+ * @name nitch.progress.failed
+ * @method
+ * @description Replaces the progress bar with a error message should you need to stop loading things. An example usage might be as part of the loading process you want to check browser support.
+ * @param {String} message The failure message you want to display to the user
+ * @example var loader = new nitch.progress("#loading", {
+	defaultLoaded: 40,
+	assets: {
+		audio: 20,
+		video: 20,
+		graphics: 20
+	}
+});
+
+loader.failed("Audio files weren't found.");
+**/
+	nitch.progress.prototype.failed = function(message) {
+		// Empty the complete function just in case other loaders fire and it all ends up completing
+		options.onComplete = function() { }
+		
+		nitch.dom("#nitch-progress").remove();
+		nitch.dom(elem).after('<div id="nitch-progress-error">'+ message +'</div>');
 	}
 	
 	// Check we're not complete already
