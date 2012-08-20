@@ -178,7 +178,7 @@ nitch.array =  {
  * @name nitch.array.shuffle
  * @method
  * @description Shuffle an array. 
- * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm
+ * @see <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm">Fisher Yates shuffle</a>
  * @param {Array} array
  * @param {Object} random Optional RNG. Defaults to Math.
  * @return {Array} The original array, shuffled.
@@ -200,7 +200,7 @@ nitch.array =  {
  * @method
  * @description Insert a value into an array at a random index. The element 
 	previously at that index will be pushed back onto the end. 
- * @see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+ * @see <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm">Fisher Yates shuffle</a>
  * @param {Array} object to shuffle.
  * @param {Mixed} value to insert.
  * @param {Object} optional RNG. Defaults to Math.
