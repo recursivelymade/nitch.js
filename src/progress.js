@@ -55,6 +55,7 @@ loader.failed("Audio files weren't found.");
 	nitch.progress.prototype.failed = function(message) {
 		// Empty the complete function just in case other loaders fire and it all ends up completing
 		options.onComplete = function() { }
+		this.totalLoaded = this.total;
 		
 		nitch.dom("#nitch-progress").remove();
 		nitch.dom(elem).after('<div id="nitch-progress-error">'+ message +'</div>');
