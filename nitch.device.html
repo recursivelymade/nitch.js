@@ -32,7 +32,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
 	<div class="container">
-	  <a class="brand" href="#">nitch.js</a>
+	  <a class="brand" href="index.html">nitch.js</a>
 	</div>
   </div>
 </div>
@@ -96,6 +96,13 @@
     
 	
 	
+	<dt class="tag-see">See:</dt>
+	<dd class="tag-see">
+        <ul>
+            <li><a href="examples/device.html">Simple example</a></li>
+        </ul>
+	</dd>
+	
 	
 	
 
@@ -153,7 +160,7 @@
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L53">device.js, line 53</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L54">device.js, line 54</a></p>
 	
 
     
@@ -206,6 +213,116 @@ nitch.device.features = {
         <h2 class="subsection-title">Methods</h2>
         
         <dl>
+            
+<dt>
+    <h3 class="name" id="featureList">nitch.device.featureList <small><span class="type-signature">&lt;static> </span></small></h3>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        prints out nitch.device.features to an unordered list after the selector
+    </div>
+    
+    
+    
+    
+    
+        <h4>Parameters:</h4>
+        
+
+<table class="table table-bordered">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+            
+            <td class="type">
+            
+                        String
+                        
+                    
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The selector the list will appear after</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L56">device.js, line 56</a></p>
+	
+
+    
+	
+	
+	
+	
+
+
+</dl>
+
+    
+    
+    
+    
+    
+    
+    
+    
+        <h4>Example</h4>
+        
+    <pre class="sh_javascript"><code> nitch.device.featureList("#game");</code></pre>
+
+    
+</dd>
+        
             
 <dt>
     <h3 class="name" id="setAppcache">nitch.device.setAppcache <small><span class="type-signature">&lt;static> </span></small></h3>
@@ -302,7 +419,7 @@ nitch.device.features = {
             
             
             
-            <td class="description last">Device name with the url of the manifest</td>
+            <td class="description last">Device name with the url of the manifest.  <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div></td>
         </tr>
 	
 	
@@ -323,7 +440,7 @@ nitch.device.features = {
             
             
             
-            <td class="description last">Url of the manifest. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div></td>
+            <td class="description last">Url of the manifest.</td>
         </tr>
 	
 	
@@ -356,7 +473,7 @@ nitch.device.features = {
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L192">device.js, line 192</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L200">device.js, line 200</a></p>
 	
 
     
@@ -540,7 +657,7 @@ nitch.device.features = {
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L149">device.js, line 149</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L157">device.js, line 157</a></p>
 	
 
     
@@ -612,7 +729,7 @@ nitch.device.features = {
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L15">device.js, line 15</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L16">device.js, line 16</a></p>
 	
 
     
@@ -634,7 +751,7 @@ nitch.device.features = {
     
             
 <div class="param-desc">
-    tv | tablet | mobile | desktop
+    &quot;tv&quot; or &quot;tablet&quot; or &quot;mobile&quot; or &quot;desktop&quot;
 </div>
 
 
@@ -698,7 +815,7 @@ nitch.device.features = {
 	
 	
 	
-	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L129">device.js, line 129</a></p>
+	<p>Source: <a href="https://github.com/recursivelymade/nitch.js/blob/master/src/device.js#L137">device.js, line 137</a></p>
 	
 
     
@@ -738,14 +855,14 @@ nitch.device.features = {
 
 	<li><strong>appname:</strong> nitch.js</li>
 
-	<li><strong>appdescript:</strong> Nitch=is designed as a responsive web game library</li>
+	<li><strong>appdescript:</strong> Nitch is designed as a responsive web game library</li>
 
 	<li><strong>repo:</strong> recursivelymade/nitch.js</li>
 
 	<li><strong>intro:</strong> ../../../../../rmsite/nitch.js/docs/readme.html</li>
  -->
 <footer>
-    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Thu Aug 09 2012 11:36:16 GMT+0100 (BST)</p>
+    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Wed Aug 22 2012 13:43:50 GMT+0100 (BST)</p>
 </footer>
 </div>
 

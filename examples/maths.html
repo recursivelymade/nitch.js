@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Nitch.js example - nitch.maths</title>
+	<script src="https://raw.github.com/recursivelymade/nitch.js/master/min/nitch.js" type="text/javascript"></script>
+	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="format-detection" content="address=no"/> 
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	<!-- Core styles -->
+	<link type="text/css" rel="stylesheet" href="styles	.css" />
+	<script> 
+		nitch.ready(function() {
+			var from = nitch.dom("#from").offset();
+			nitch.dom("#area").tap(function(ev) {
+				nitch.dom("#distance .total").text(nitch.math.distance({x: from.left, y: from.top}, {x: ev.clientX, y: ev.clientY}));
+				nitch.dom("#distanceSq .total").text(nitch.math.distanceSquared({x: from.left, y: from.top}, {x: ev.clientX, y: ev.clientY}));
+			});
+		}); 
+	</script>
+</head>
+<body>
+<div id="container">
+  <div id="game">
+  <p>Click in the area to work out the distance and distance squared from the black to your click event</p>
+  	<div id="area" style="border:1px solid #333; height:150px; ">
+  		<div id="from" style="background:#333; height:15px; width:15px; position:relative; top:40px; left:5px;"></div>
+  	</div>
+  	<div id="distance">Distance: <span class="total"></span></div>
+  	<div id="distanceSq">Distance Squared: <span class="total"></span></div>
+  </div>
+</div>
+</body>
+</html>

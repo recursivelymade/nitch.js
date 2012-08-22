@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Nitch.js example - nitch.debug.timing</title>
+	<title>Nitch.js example - nitch.device</title>
 	<script src="https://raw.github.com/recursivelymade/nitch.js/master/min/nitch.js" type="text/javascript"></script>
 	
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
 	<!-- Core styles -->
-	<link type="text/css" rel="stylesheet" href="style.css" />
+	<link type="text/css" rel="stylesheet" href="styles	.css" />
 	<script> 
 		nitch.ready(function() {
-			nitch.debug.timing({list:true, timeline:"#game"});
+			var type = "<h1>You're on a " + nitch.device.type() + "</h1>";
+			nitch.dom("#game").before(type);
+			
+			nitch.device.featureList("h1");
 		}); 
 	</script>
 </head>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Nitch.js example - nitch.debug.timing</title>
+	<title>Nitch.js example - nitch.progress</title>
 	<script src="https://raw.github.com/recursivelymade/nitch.js/master/min/nitch.js" type="text/javascript"></script>
 	
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,17 +16,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
 	<!-- Core styles -->
-	<link type="text/css" rel="stylesheet" href="style.css" />
+	<link type="text/css" rel="stylesheet" href="styles	.css" />
 	<script> 
 		nitch.ready(function() {
-			nitch.debug.timing({list:true, timeline:"#game"});
+			var loader = new nitch.progress("#game", {
+				defaultLoaded: 40,
+				assets: {
+					audio: 20,
+					video: 20,
+					graphics: 20
+				},
+				onComplete: function() { 
+					alert("All loaded");
+				}
+			});
+		
+			nitch.dom("button").tap(function(ev) {
+				loader.loaded(ev.target.id);
+			});
 		}); 
 	</script>
 </head>
 <body>
 <div id="container">
   <div id="game">
+	
   </div>
+  	<button id="audio">Load Audio</button>
+  	<button id="video">Load Video</button>
+  	<button id="graphics">Load Graphics</button>
 </div>
 </body>
 </html>
