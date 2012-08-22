@@ -1,10 +1,16 @@
 /**
  * @namespace nitch.stats
  * @description Sends events to Google Analytics. It will store them offline while the device isn't online and sends them when it is.
+ * @param {Object} [Options]
+ * @param {String} [Options.link] selector for the &lt;a&gt; you wish to track
  * @todo allow other analytics systems to be added
  * @example var stats = new nitch.stats();
+ * stats.event("playerOption","2");
+ * // or
+ * &lt;a href="http://google.com" class="external" data-category="Outbound link"&gt;Quit&lt;/a&gt;
+ * var stats = new nitch.stats({link:"a.external"});
 **/
-nitch.stats = function() {
+nitch.stats = function(opts) {
 	
 	this.defaults = {
 		engine: "google"
@@ -14,6 +20,17 @@ nitch.stats = function() {
 	
 	if(!localStorage.getItem("nitch.stats")){
 		localStorage.setItem("nitch.stats","[]");
+	}
+	
+	if(opts.link) {
+		var links = nitch.dom(opts.link);
+		var that = this;
+		
+		links.tap(function(ev) {
+			ev.preventDefault();
+			var category = nitch.dom(this).attr("data-category");
+			that.link(category, this);
+		});
 	}
 
 /**
@@ -39,7 +56,6 @@ nitch.stats = function() {
  * @description Track click links
  * @param {String} category The category for your event
  * @param {String} action The your event's action
- * @todo This needs a bit more work, as it needs to know about which links to track
 **/
 	nitch.stats.prototype.link = function(category, link) {
 		var action = link.href;
