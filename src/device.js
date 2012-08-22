@@ -1,6 +1,7 @@
 /**
  * @namespace nitch.device
  * @description Stuff for devices
+ * @see <a href="examples/device.html">Simple example</a>
 **/
 nitch.device = {
 	

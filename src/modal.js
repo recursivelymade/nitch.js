@@ -9,6 +9,7 @@
   * @param {String} [opts.ariaProp="polite"] Sets the WAI-ARIA aria-live attribute 
   * @param {String} [opts.ariaRole="dialog"] Sets the WAI-ARIA role attribute 
   * @param {Boolean} [opts.maskClose=true] Allows user to close modal but clicking the mask
+   * @see <a href="examples/modal.html">Simple example</a>
  **/
 nitch.modal = function(elem, opts) {
 

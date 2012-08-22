@@ -5,6 +5,7 @@ nitch.debug = {
  * @class
  * @description Measures the performance of your game
  * @example new nitch.debug.performance();
+ * @see <a href="examples/debug.performance.html">Simple example</a>
 **/	
 	performance: function(opts) {
 		
@@ -71,6 +72,7 @@ nitch.debug = {
  * @param {String} opts.timeline Generate a timeline like Firebug's network tab or <a href="https://developers.google.com/chrome-developer-tools/docs/timeline">Chrome's timeline panel</a> <strong>after</strong> the element specified
  * @example nitch.debug.network({list:true}); // prints it out
  * nitch.debug.network({timeline:"#game"}); // prints timeline
+ * @see <a href="examples/debug.timing.html">Simple example</a>
 **/
 	timing: function(opts) {
 		window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};

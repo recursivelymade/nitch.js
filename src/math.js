@@ -1,6 +1,7 @@
 /** 
  * @namespace nitch.math
  * @description Useful helpers for Math related stuff
+ * @see <a href="examples/maths.html">Simple example</a>
 **/
 nitch.math = {
 /** 

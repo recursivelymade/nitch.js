@@ -72,6 +72,7 @@ loader.failed("Audio files weren't found.");
 @namespace nitch.progress
 @class
 @description Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default and updates <a href="http://www.w3.org/TR/wai-aria/states_and_properties#aria-valuenow">aria-valuenow</a> as you send loaded assets.
+@see <a href="examples/progress.html">Simple example</a>
 @param {String} element Element to attach the progress bar to
 @param {Object} opts
 @param {Numeric} [opts.defaultLoaded=0] The default amount loaded when the progress bar starts
