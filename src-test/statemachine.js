@@ -90,7 +90,7 @@ stateMachine.prototype.testOnStates = function() {
 		{ name: 'clear', from: 'yellow', to: 'green'  }
 	  ],
 	  callbacks: {
-	  	onchangestate: function(event,from,to) { changestate = event + ' from ' + from + ' to ' + to; },
+	  	onChangeState: function(event,from,to) { changestate = event + ' from ' + from + ' to ' + to; },
 		onBeforewarn: function() { onbefore = true; },
 		onLeaveyellow: function() { onleave = true; },
 		onEnteryellow: function() { onenter = true; },
