@@ -70,8 +70,8 @@ nitch.debug = {
  * @param {Object} opts
  * @param {Boolean} opts.list List print out the performance timing and navigation results in a definition list at the end of the &lt;body&gt;
  * @param {String} opts.timeline Generate a timeline like Firebug's network tab or <a href="https://developers.google.com/chrome-developer-tools/docs/timeline">Chrome's timeline panel</a> <strong>after</strong> the element specified
- * @example nitch.debug.network({list:true}); // prints it out
- * nitch.debug.network({timeline:"#game"}); // prints timeline
+ * @example nitch.debug.timing({list:true}); // prints it out
+ * nitch.debug.timing({timeline:"#game"}); // prints timeline
  * @see <a href="examples/debug.timing.html">Simple example</a>
 **/
 	timing: function(opts) {
