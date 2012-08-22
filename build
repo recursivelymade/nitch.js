@@ -3,4 +3,4 @@
 
 # combines all the js files using Google closure
 echo "Building the JS"
-java -jar ../../build-tools/google-closure/compiler.jar --js src/nitch.js src/device.js src/math.js src/modal.js src/stats.js src/xhr.js src/progress.js src/statemachine.js src/debug.js src/externals/classList.js/classList.js src/externals/matchMedia.js/matchMedia.js --js_output_file min/nitch.js
+java -jar ../../build-tools/google-closure/compiler.jar --js src/nitch.js src/device.js src/math.js src/modal.js src/stats.js src/xhr.js src/progress.js src/statemachine.js src/collision.js src/debug.js src/externals/classList.js/classList.js src/externals/matchMedia.js/matchMedia.js --js_output_file min/nitch.js
