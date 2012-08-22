@@ -241,15 +241,20 @@ nitch.nodeList = function(selector) {
 /**
  * @name nitch.attr
  * @method
- * @description Sets an attribute on each element in the node list
+ * @description Get an attribute on each element in the node list. If data is supplied, it will set it as an attribute.
 
  * @example nitch.dom("img").attr("alt", "Ben's cat Jimmy");
+ * nitch.dom("img").attr("alt"); // returns "Ben's cat Jimmy"
 **/
     nitch.nodeList.prototype.attr = function (attribute, data) {
-        this.each.call(this.nodeList, function (i) {
-            i.setAttribute(attribute, data);
-        });
-        return this;
+		if(data) {
+			this.each.call(this.nodeList, function (i) {
+				i.setAttribute(attribute, data);
+			});
+			return this;
+		} else {
+			return this.nodeList[0].getAttribute(attribute);
+		}
     },
     
     
