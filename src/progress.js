@@ -1,3 +1,28 @@
+/**
+@namespace nitch.progress
+@class
+@description Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default and updates <a href="http://www.w3.org/TR/wai-aria/states_and_properties#aria-valuenow">aria-valuenow</a> as you send loaded assets.
+@see <a href="examples/progress.html">Simple example</a>
+@param {String} element Element to attach the progress bar to
+@param {Object} opts
+@param {Numeric} [opts.defaultLoaded=0] The default amount loaded when the progress bar starts
+@param {Object} opts.assets Object to specific your assets and the percentage of how much they are loaded
+@param {Function} opts.onComplete Function to call once the total of the assets has been reached.
+@example var loader = new nitch.progress("#loading", {
+	defaultLoaded: 40,
+	assets: {
+		audio: 20,
+		video: 20,
+		graphics: 20
+	},
+	onComplete: function() { console.info("I'm done loading"); }
+});
+
+// Then fire your loaded events
+loader.loaded('audio');
+loader.loaded('video');
+loader.loaded('graphics');
+**/
 nitch.progress = function(elem, opts) {
 	var defaults = {
 		defaultLoaded: 0,
@@ -67,29 +92,3 @@ loader.failed("Audio files weren't found.");
 		options.onComplete();
 	}
 };
-
-/**
-@namespace nitch.progress
-@class
-@description Create a progress bar on screen and update it as you see fit. The progress bar also applies the <a href="http://www.w3.org/TR/wai-aria/roles#progressbar">WAI Aria progress bar role</a> by default and updates <a href="http://www.w3.org/TR/wai-aria/states_and_properties#aria-valuenow">aria-valuenow</a> as you send loaded assets.
-@see <a href="examples/progress.html">Simple example</a>
-@param {String} element Element to attach the progress bar to
-@param {Object} opts
-@param {Numeric} [opts.defaultLoaded=0] The default amount loaded when the progress bar starts
-@param {Object} opts.assets Object to specific your assets and the percentage of how much they are loaded
-@param {Function} opts.onComplete Function to call once the total of the assets has been reached.
-@example var loader = new nitch.progress("#loading", {
-	defaultLoaded: 40,
-	assets: {
-		audio: 20,
-		video: 20,
-		graphics: 20
-	},
-	onComplete: function() { console.info("I'm done loading"); }
-});
-
-// Then fire your loaded events
-loader.loaded('audio');
-loader.loaded('video');
-loader.loaded('graphics');
-**/
