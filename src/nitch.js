@@ -415,12 +415,12 @@ nitch.nodeList = function(selector) {
 		} else {
 			view.on('touchstart', function(eventStart) {  
 				options.start(eventStart); 
-				that.on('touchmove', options.move);
+				window.addEventListener("touchmove", options.move, false); 
 			});
 			
 			view.on('touchend', function(eventRelease) {
 				options.release(eventRelease); 
-				that.detach('touchmove', options.move);
+				window.removeEventListener("touchmove", options.move, false); 
 			});
 			
 			// We may need to capture clicks in the future as VoiceOver on iOS sends them instead of touchevents
