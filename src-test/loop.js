@@ -7,6 +7,10 @@ loop.prototype.testNoLoop = function() {
 loop.prototype.testBasicLoop = function() {
 	var loop = new nitch.loop(function(){ });
 	assertFalse(loop.running);
+	assertFalse(loop.startTime);
+	assertFalse(loop.progress);
+	assertEquals(0, loop.paused);
+	assertEquals(0, loop.resumed);
 	
 	assertFunction(loop.start);
 	loop.start();
@@ -15,10 +19,14 @@ loop.prototype.testBasicLoop = function() {
 	assertFunction(loop.pause);
 	loop.pause();
 	assertFalse(loop.running);
+	assertEquals(1, loop.paused);
+	assertEquals(0, loop.resumed);
 	
 	assertFunction(loop.resume);
 	loop.resume();
 	assertTrue(loop.running);
+	assertEquals(1, loop.paused);
+	assertEquals(1, loop.resumed);
 	
 	assertFunction(loop.end);
 	loop.end();
