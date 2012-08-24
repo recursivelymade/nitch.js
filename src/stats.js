@@ -22,15 +22,17 @@ nitch.stats = function(opts) {
 		localStorage.setItem("nitch.stats","[]");
 	}
 	
-	if(opts.link) {
-		var links = nitch.dom(opts.link);
-		var that = this;
-		
-		links.tap(function(ev) {
-			ev.preventDefault();
-			var category = nitch.dom(this).attr("data-category");
-			that.link(category, this);
-		});
+	if(opts) {
+		if(opts.link) {
+			var links = nitch.dom(opts.link);
+			var that = this;
+			
+			links.tap(function(ev) {
+				ev.preventDefault();
+				var category = nitch.dom(this).attr("data-category");
+				that.link(category, this);
+			});
+		}
 	}
 
 /**
