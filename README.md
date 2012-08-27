@@ -41,3 +41,7 @@ Dependencies for development
 * [JsTestDriver](http://code.google.com/p/js-test-driver/)
 * [JSHint](http://www.jshint.com/)
 * [UglifyJS](https://github.com/mishoo/UglifyJS/)
+
+Licence
+=======
+Nitch is released under the [MIT licence](https://github.com/recursivelymade/nitch.js/blob/master/LICENCE). 
