@@ -4,6 +4,8 @@ nitch.js
 You've heard of [Responsive Web Design](http://en.wikipedia.org/wiki/Responsive_Web_Design) right? Well Nitch is designed as a responsive web game library. The idea is simple, create a game that can be played on any device you like. It offers
 * Simple DOM manipulation
 * Simple events, such as on, off, fire and a custom cross-device "tap" event
+* Simple object-to-object bounding-box collision detector (AABB)
+* A simple game loop based on a cross browser version of [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame)
 * A state machine to track events through your game based on [Jake Gordon's Javascript Finite State Machine](https://github.com/jakesgordon/javascript-state-machine/)
 * A progress loader system
 * XHR requests
