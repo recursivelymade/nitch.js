@@ -4,13 +4,13 @@ collisions.prototype.testMiss = function() {
 	var miss = nitch.collision.AABB({
 		width: 200,
 		height: 100,
-		x: 30,
-		y: 50	
+		left: 30,
+		top: 50	
 		}, {
 		width: 100,
 		height: 200,
-		x: 800,
-		y: 500
+		left: 800,
+		top: 500
 	});
 
 	assertFalse(miss);
@@ -20,13 +20,13 @@ collisions.prototype.testCollide = function() {
 	var collide = nitch.collision.AABB({
 		width: 200,
 		height: 100,
-		x: 30,
-		y: 50	
+		left: 30,
+		top: 50	
 		}, {
 		width: 100,
 		height: 200,
-		x: 25,
-		y: 40
+		left: 25,
+		top: 40
 	});
 	
 	assertObject(collide);
@@ -40,13 +40,13 @@ collisions.prototype.testTouching = function() {
 	var touch = nitch.collision.AABB({
 		width: 200,
 		height: 100,
-		x: 30,
-		y: 50	
+		left: 30,
+		top: 50	
 		}, {
 		width: 200,
 		height: 100,
-		x: 230,
-		y: 150
+		left: 230,
+		top: 150
 	});
 	
 	assertObject(touch);
