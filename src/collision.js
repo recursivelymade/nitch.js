@@ -21,6 +21,7 @@
 **/
 nitch.collision = {
 	AABB: function(r1, r2) {
+		var dir;
 		var w = (parseInt(r1.width) + parseInt(r2.width)) / 2;
 		var h = (parseInt(r1.height) + parseInt(r2.height)) / 2;
 		var dx = (parseInt(r1.left) + parseInt(r1.width) / 2) - (parseInt(r2.left) + parseInt(r2.width) / 2);
