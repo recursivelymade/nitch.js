@@ -10,7 +10,11 @@ nitch.device = {
 		ipad2: "only screen and (min-width: 768px) and (max-width: 1024px)",
 		iphone4s: "only screen and (min-device-width : 640px) and (max-device-width : 960px) and (-webkit-device-pixel-ratio: 2)",
 		iphone4: "only screen and (min-device-width : 640px) and (max-device-width : 960px)",
-		iphone3: "only screen and (min-device-width : 320px) and (max-device-width : 480px)"
+		iphone3: "only screen and (min-device-width : 320px) and (max-device-width : 480px)",
+		android_ldpi: 'only screen and (-webkit-device-pixel-ratio:.75)',
+		android_mdpi: 'only screen and (-webkit-device-pixel-ratio:1)',
+		android_hdpi: 'only screen and (-webkit-device-pixel-ratio:1.5)',
+		mobile: 'only screen and (min-device-width : 320px) and (max-device-width : 480px)'
 	},
 	
 /**
@@ -157,7 +161,7 @@ nitch.device.features = {
 /**
  * @namespace nitch.device.stylesheet
  * @method
- * @description Injects a stylesheet based on UserAgent and if it's a mobile, with a media query
+ * @description Injects a stylesheet based on UserAgent and if it's a mobile, with a media query.
  * @param {Object} stylesheet 
  * @param {string} stylesheet.device Device name with the url of the stylesheet. <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
  * @param {String} stylesheet.url url of the stylesheet
@@ -169,7 +173,11 @@ nitch.device.features = {
 	ipad2: "style/ipad/style.css",
 	iphone4s: "style/iphone4s/style.css",
 	iphone4: "style/iphone4/style.css",
-	iphone3: "style/iphone/style.css"
+	iphone3: "style/iphone/style.css",
+	android_ldpi: "style/android/ldpi.css",
+	android_mdpi: "style/android/mdpi.css",
+	android_hdpi: "style/android/hdpi.css",
+	mobile: "style/mobile/default.css",
 });
 **/
 	stylesheet: function(opts) {
@@ -200,7 +208,7 @@ nitch.device.features = {
 /**
  * @name nitch.device.setAppcache
  * @method
- * @description Injects an appcache manifest based on UserAgent and if it's a mobile, with a media query
+ * @description Injects an appcache manifest if supported based on UserAgent and if it's a mobile, with a media query
  * @param {Object} appcache
  * @param {String} appcache.device Device name with the url of the manifest.  <div class="label"><strong>For desktop and tv support</strong> just use the device name 'desktop' or 'tv'.</div>
  * @param {String} appcache.url Url of the manifest.
@@ -211,7 +219,11 @@ nitch.device.features = {
 	ipad2: "style/ipad/appcache.manifest",
 	iphone4s: "style/iphone4s/appcache.manifest",
 	iphone4: "style/iphone4/appcache.manifest",
-	iphone3: "style/iphone/appcache.manifest"
+	iphone3: "style/iphone/appcache.manifest",
+	android_ldpi: "style/android_ldpi/appcache.manifest",
+	android_mdpi: "style/android_mdpi/appcache.manifest",
+	android_hdpi: "style/android_hdpi/appcache.manifest",
+	mobile: "style/mobile/appcache.manifest"
 });
 **/
 	appcache: function(opts) {
